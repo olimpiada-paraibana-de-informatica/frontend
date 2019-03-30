@@ -1,3 +1,40 @@
-<p>
-  home-page works!
-</p>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    [disableClose]="true"
+    #drawer
+    class="sidenav"
+    fixedInViewport="true"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)">
+    <mat-toolbar color="primary" class="mat-elevation-z2">Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item>
+        <mat-icon mat-list-icon>dashboard</mat-icon>
+        <h4 mat-line>Dashboard</h4>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="mat-elevation-z2">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Olimpíada Paraibana de Informática (OPI)</span>
+      <span class="example-spacer"></span>
+      <small class="font-12">{{first}}</small>
+      <button mat-icon-button (click)="logout()">
+        <mat-icon aria-label="Sair">exit_to_app</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <div style="padding: 60px 150px 0 150px">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
