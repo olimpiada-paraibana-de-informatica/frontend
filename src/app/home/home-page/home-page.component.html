@@ -1,4 +1,4 @@
-<mat-sidenav-container class="sidenav-container background">
+<mat-sidenav-container class="example-sidenav-container background " >
   <mat-sidenav
     [disableClose]="true"
     #drawer
@@ -8,7 +8,7 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="!(isHandset$ | async)">
     <mat-toolbar color="primary" class="mat-elevation-z2">Menu</mat-toolbar>
-    <mat-nav-list>
+    <mat-nav-list >
       <a mat-list-item [routerLink]="'/home/dashboard'">
         <mat-icon mat-list-icon >dashboard</mat-icon>
         <h4 mat-line>Dashboard</h4>
@@ -22,7 +22,7 @@
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
+>
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>Olimpíada Paraibana de Informática</span>

@@ -14,6 +14,7 @@ import { MatDialog } from '@angular/material';
 })
 export class HomePageComponent implements OnInit {
 
+  mobileQuery: MediaQueryList;
   public first: string;
 
   isHandset$: Observable<boolean> = this.breakpointObserver
