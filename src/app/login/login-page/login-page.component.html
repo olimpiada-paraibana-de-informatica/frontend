@@ -1,0 +1,27 @@
+<div class="container">
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <mat-card class="login-container">
+        <img class="logo" src="../../../assets/opi-logo.png" alt="">
+        <mat-card-title class="text-center">Login</mat-card-title>
+        <mat-form-field>
+          <input matInput type="email" placeholder="Email" formControlName="email"/>
+          <mat-error *ngIf="loginForm.controls.email.errors?.required">
+            O email é obrigatório
+          </mat-error>
+          <mat-error *ngIf="loginForm.controls.email.errors?.email">
+            O email inserido é inválido
+          </mat-error>
+        </mat-form-field>
+      
+        <mat-form-field>
+          <input matInput [type]="hide ? 'password' : 'text'" placeholder="Senha" formControlName="password" />
+          <mat-icon matSuffix (click)="hide = !hide" class="outline">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+          <mat-error *ngIf="loginForm.controls.password.errors?.required">
+            A senha é obrigatória
+          </mat-error>
+        </mat-form-field>
+        
+        <button mat-raised-button color="accent" type="submit" [disabled]="loginForm.invalid" class="button1">Entrar</button>
+    </mat-card>
+  </form>
+</div>
