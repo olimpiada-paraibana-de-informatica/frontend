@@ -137,5 +137,10 @@
       }
     }
   },
-  "defaultProject": "opi-frontEnd"
+  "defaultProject": "opi-frontEnd",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }
