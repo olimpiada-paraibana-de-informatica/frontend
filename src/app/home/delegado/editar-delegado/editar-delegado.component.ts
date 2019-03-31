@@ -22,7 +22,7 @@ export class EditarDelegadoComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe((data) => {
       this.delegado = data.delegado;
-      this.delegado.email = data.delegado.delegadoname;
+      this.delegado.email = data.delegado.username;
     });
   }
 

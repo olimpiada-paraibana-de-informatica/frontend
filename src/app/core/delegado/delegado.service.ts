@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Delegado } from './delegado';
 
 @Injectable({
   providedIn: 'root'
@@ -6,4 +8,8 @@ import { Injectable } from '@angular/core';
 export class DelegadoService {
 
   constructor() { }
+
+  getDelegado(id) : Observable<Delegado>{
+    return ;
+  }
 }

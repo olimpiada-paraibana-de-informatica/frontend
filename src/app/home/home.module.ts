@@ -17,7 +17,7 @@ import { HeaderComponent } from '../shared/components/header/header.component';
 
 @NgModule({
   declarations: [HomePageComponent, 
-    DashboardComponent, DelegadoFormComponent, DelegadoListComponent, CriarDelegadoComponent, EditarDelegadoComponent, ],
+    DashboardComponent, DelegadoFormComponent, DelegadoListComponent, CriarDelegadoComponent, EditarDelegadoComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
