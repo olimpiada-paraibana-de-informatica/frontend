@@ -34,6 +34,7 @@ export class HomePageComponent implements OnInit {
   }
 
   logout() {
+    this.tokenService.clearToken();
     this.router.navigate(['/']);
   }
 
