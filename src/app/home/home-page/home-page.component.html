@@ -14,8 +14,9 @@
         <h4 mat-line>Dashboard</h4>
       </a>
       <a mat-list-item [matMenuTriggerFor]="menu"  fxLayoutGap="15px">
-        <mat-icon mat-list-icon class="material-icons" >dashboard</mat-icon>
-        <h4 mat-line>Delegado</h4>
+        <mat-icon mat-list-icon class="material-icons" >supervised_user_circle
+        </mat-icon>
+        <h4 mat-line>Delegados</h4>
         <mat-menu #menu="matMenu" class="teste" xPosition="before" [overlapTrigger]="true"> 
             <a [routerLink]="'/home/delegado/novo'"><button mat-menu-item >Cadastrar</button></a>
             <a [routerLink]="'/home/delegado'"><button mat-menu-item>Listar</button></a>
