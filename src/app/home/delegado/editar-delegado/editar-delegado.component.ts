@@ -27,7 +27,7 @@ export class EditarDelegadoComponent implements OnInit {
   }
 
   editdelegado(delegado: Delegado) {
-      this.openSnackBar('Delegado '+delegado.firstName+' editado com sucesso');
+      this.openSnackBar('Delegado '+delegado.name+' editado com sucesso');
   }
 
   openSnackBar(message: string, config?) {

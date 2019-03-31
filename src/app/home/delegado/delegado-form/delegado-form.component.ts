@@ -17,16 +17,25 @@ export class DelegadoFormComponent implements OnInit {
   delegadoForm: FormGroup;
   @Output() childSubmit = new EventEmitter<Delegado>();
   
+  cities = [{
+    id:"1",
+    name: "Sousa"
+  },{
+    id: "2",
+    name:"Olivedos"
+  }];
+
   constructor() { }
 
   ngOnInit() {
     this.delegadoForm = new FormGroup({
-      firstName: new FormControl(this.delegado.firstName, [Validators.required]),
-      lastName: new FormControl(this.delegado.lastName, [Validators.required]),
+      name: new FormControl(this.delegado.name, [Validators.required]),
       email: new FormControl(this.delegado.email, [Validators.required, Validators.email]),
       emailConfirm: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl(this.delegado.password, [Validators.required]),
       passwordConfirm: new FormControl('', [Validators.required]),
+      schoolName: new FormControl(this.delegado.schoolName, [Validators.required]),
+      schoolCity: new FormControl(this.delegado.schoolCity, [Validators.required]),
     }, {
       validators: [ ValidatorsForm.MatchEmail, ValidatorsForm.MatchPassword ]
     });

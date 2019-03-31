@@ -1,21 +1,24 @@
 <mat-card>
   <div class="table-responsive">
     <form [formGroup]="delegadoForm" (ngSubmit)="submitForm()">
-      <div fxLayout="row" fxLayoutGap="15px">
-        <mat-form-field class="table-responsive-row" fxFlex="50">
-          <input matInput placeholder="Nome *" formControlName="firstName">
-          <mat-error *ngIf="delegadoForm.controls.firstName.errors?.required">
-            O nome é obrigatório
-          </mat-error>
-        </mat-form-field>
 
-        <mat-form-field class="table-responsive-row" fxFlex="50">
-          <input matInput placeholder="Sobrenome *" formControlName="lastName">
-          <mat-error *ngIf="delegadoForm.controls.lastName.errors?.required">
-            O sobrenome é obrigatório
-          </mat-error>
-        </mat-form-field>
-      </div>
+        <div fxLayout="row" fxLayoutGap="15px">
+            <mat-form-field class="table-responsive-row" fxFlex="50">
+              <input matInput placeholder="Nome do Colégio *" formControlName="schoolName">
+              <mat-error *ngIf="delegadoForm.controls.schoolName.errors?.required">
+                O Nome do Colégio é obrigatório
+              </mat-error>
+            </mat-form-field>
+
+              <mat-form-field class="table-responsive-row" fxFlex="50">
+                  <mat-select placeholder="Cidade do Colégio *" formControlName="schoolCity">
+                      <mat-option [value]="city.id" *ngFor="let city of cities">{{city.name}}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="delegadoForm.controls.schoolCity.errors?.required">
+                      A Cidade do Colégio é obrigatória
+                  </mat-error>
+              </mat-form-field>
+          </div>
 
       <div fxLayout="row" fxLayoutGap="15px">
         <mat-form-field class="table-responsive-row" fxFlex="50">
@@ -63,6 +66,15 @@
           </mat-error>
         </mat-form-field>
       </div>
+
+      <div fxLayout="row" fxLayoutGap="15px">
+          <mat-form-field class="table-responsive-row" fxFlex="100">
+            <input matInput placeholder="Nome do Delegado *" formControlName="name">
+            <mat-error *ngIf="delegadoForm.controls.name.errors?.required">
+              O nome do delegado é obrigatório
+            </mat-error>
+          </mat-form-field>
+        </div>
 
       <div class="button-row bt-submit">
         <button mat-raised-button class="mat-raised-button mat-primary btn float-right" type="submit" [disabled]="!delegadoForm.valid">{{textSubmit}}</button>

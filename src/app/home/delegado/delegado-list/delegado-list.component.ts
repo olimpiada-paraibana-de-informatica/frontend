@@ -13,13 +13,15 @@ import { RemoveDialogComponent } from 'src/app/shared/components/remove-dialog/r
 })
 export class DelegadoListComponent implements OnInit {
 
-  displayedColumns: string[] = ['actions', 'name', 'email'];
+  displayedColumns: string[] = ['actions', 'name', 'email','schoolName'];
   data = new MatTableDataSource([{
     firstName:"Wesley",
-    username: "wesley.anibal@ccc.ufcg.edu.br"
+    username: "wesley.anibal@ccc.ufcg.edu.br",
+    schoolName: "UFCG"
   },{
     firstName: "teste",
-    username:"teste@teste.com"
+    username:"teste@teste.com",
+    schoolName: "UEPB"
   }]);
   resultsLength = 0;
   isLoadingResults = true;
