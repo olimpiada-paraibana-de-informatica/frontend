@@ -8,9 +8,9 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     >
     <mat-toolbar color="primary" class="mat-elevation-z2">Menu</mat-toolbar>
-    <mat-nav-list >
+    <mat-nav-list class="" >
       <a mat-list-item [routerLink]="'/home/dashboard'">
-        <mat-icon mat-list-icon >dashboard</mat-icon>
+        <mat-icon mat-list-icon class="material-icons" >dashboard</mat-icon>
         <h4 mat-line>Dashboard</h4>
       </a>
     </mat-nav-list>
