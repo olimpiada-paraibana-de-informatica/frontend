@@ -1,0 +1,72 @@
+<mat-card>
+  <div class="table-responsive">
+    <form [formGroup]="delegadoForm" (ngSubmit)="submitForm()">
+      <div fxLayout="row" fxLayoutGap="15px">
+        <mat-form-field class="table-responsive-row" fxFlex="50">
+          <input matInput placeholder="Nome *" formControlName="firstName">
+          <mat-error *ngIf="delegadoForm.controls.firstName.errors?.required">
+            O nome é obrigatório
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="table-responsive-row" fxFlex="50">
+          <input matInput placeholder="Sobrenome *" formControlName="lastName">
+          <mat-error *ngIf="delegadoForm.controls.lastName.errors?.required">
+            O sobrenome é obrigatório
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="15px">
+        <mat-form-field class="table-responsive-row" fxFlex="50">
+          <input matInput placeholder="Email *" formControlName="email">
+          <mat-error *ngIf="delegadoForm.controls.email.errors?.required">
+            O email é obrigatório
+          </mat-error>
+          <mat-error *ngIf="delegadoForm.controls.email.errors?.email">
+            Email inválido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="table-responsive-row" fxFlex="50">
+          <input matInput placeholder="Confirmar Email *" formControlName="emailConfirm">
+          <mat-error *ngIf="delegadoForm.controls.emailConfirm.errors?.required">
+            O email é obrigatório
+          </mat-error>
+          <mat-error *ngIf="delegadoForm.controls.emailConfirm.errors?.email">
+            Email inválido
+          </mat-error>
+          <mat-error *ngIf="delegadoForm.controls.emailConfirm.errors?.MatchEmail && delegadoForm.controls.emailConfirm.value != '' && !delegadoForm.controls.email.errors?.email">
+            Os emails estão diferentes
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="15px">
+        <mat-form-field class="table-responsive-row" fxFlex="50">
+          <input matInput [type]="hide ? 'password' : 'text'" placeholder="Senha *" formControlName="password">
+          <mat-icon matSuffix (click)="hide = !hide" class="outline">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+          <mat-error *ngIf="delegadoForm.controls.password.errors?.required">
+            A senha é obrigatória
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="table-responsive-row" fxFlex="50">
+          <input matInput [type]="hideConfirm ? 'password' : 'text'" placeholder="Confirmar senha *" formControlName="passwordConfirm">
+          <mat-icon matSuffix (click)="hideConfirm = !hideConfirm" class="outline">{{hideConfirm ? 'visibility' :
+            'visibility_off'}}</mat-icon>
+          <mat-error *ngIf="delegadoForm.controls.passwordConfirm.errors?.required">
+            A senha é obrigatória
+          </mat-error>
+          <mat-error *ngIf="delegadoForm.controls.passwordConfirm.errors?.MatchPassword && delegadoForm.controls.passwordConfirm.value != ''">
+            As senhas estão diferentes
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="button-row bt-submit">
+        <button mat-raised-button class="mat-raised-button mat-primary btn float-right" type="submit" [disabled]="!delegadoForm.valid">{{textSubmit}}</button>
+      </div>
+    </form>
+  </div>
+</mat-card>

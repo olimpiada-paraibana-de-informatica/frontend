@@ -1,4 +1,4 @@
-<mat-sidenav-container class="example-sidenav-container background2 " >
+<mat-sidenav-container class="sidenav-container background2 " >
   <mat-sidenav
     
     #drawer
@@ -13,6 +13,15 @@
         <mat-icon mat-list-icon class="material-icons" >dashboard</mat-icon>
         <h4 mat-line>Dashboard</h4>
       </a>
+      <a mat-list-item [matMenuTriggerFor]="menu">
+        <mat-icon mat-list-icon class="material-icons" >dashboard</mat-icon>
+        <h4 mat-line>Delegado</h4>
+        <mat-menu #menu="matMenu" class="marginLeft">
+            <a [routerLink]="'/home/delegado/novo'"><button mat-menu-item >Cadastrar</button></a>
+            <a [routerLink]="'/home/delegado'"><button mat-menu-item>Listar</button></a>
+        </mat-menu>
+      </a>
+      
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
