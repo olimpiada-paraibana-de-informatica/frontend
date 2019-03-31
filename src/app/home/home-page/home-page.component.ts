@@ -30,10 +30,10 @@ export class HomePageComponent implements OnInit {
   }
 
   ngOnInit(){
-    
   }
 
   logout() {
+    this.tokenService.clearToken();
     this.router.navigate(['/']);
   }
 

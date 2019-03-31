@@ -18,6 +18,13 @@ export class LoginPageComponent implements OnInit {
   constructor(private router: Router, private auth: AuthService, private snackBar: MatSnackBar) {}
 
   login(): void {
+    this.auth.login(this.loginForm.value, () => {
+      this.router.navigate(['home']);
+    }, (error) => {
+      this.snackBar.open(error, '', {
+        duration: 2000,
+      });
+    });
   }
 
   ngOnInit () {

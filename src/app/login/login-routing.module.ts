@@ -7,7 +7,7 @@ import { TokenGuardService } from './token-guard.service';
 const routes: Routes = [{
   path: '',
   component: LoginPageComponent,
-  canActivate: [ ]
+  canActivate: [ TokenGuardService]
 }];
 
 @NgModule({
