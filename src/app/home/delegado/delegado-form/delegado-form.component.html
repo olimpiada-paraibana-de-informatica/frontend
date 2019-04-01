@@ -10,14 +10,14 @@
               </mat-error>
             </mat-form-field>
 
-              <mat-form-field class="table-responsive-row" fxFlex="50">
-                  <mat-select placeholder="Cidade do Colégio *" formControlName="schoolCity">
-                      <mat-option [value]="city.id" *ngFor="let city of cities">{{city.name}}</mat-option>
-                  </mat-select>
-                  <mat-error *ngIf="delegadoForm.controls.schoolCity.errors?.required">
-                      A Cidade do Colégio é obrigatória
-                  </mat-error>
-              </mat-form-field>
+            <mat-form-field class="table-responsive-row" fxFlex="50">
+              <mat-select placeholder="Cidade do Colégio *" formControlName="schoolCity">
+                  <mat-option [value]="city.id" *ngFor="let city of cities">{{city.name}}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="delegadoForm.controls.schoolCity.errors?.required">
+                  A Cidade do Colégio é obrigatória
+              </mat-error>
+          </mat-form-field>
           </div>
 
       <div fxLayout="row" fxLayoutGap="15px">
@@ -68,13 +68,21 @@
       </div>
 
       <div fxLayout="row" fxLayoutGap="15px">
-          <mat-form-field class="table-responsive-row" fxFlex="100">
+          <mat-form-field class="table-responsive-row" fxFlex="50">
             <input matInput placeholder="Nome do Delegado *" formControlName="name">
             <mat-error *ngIf="delegadoForm.controls.name.errors?.required">
               O nome do delegado é obrigatório
             </mat-error>
           </mat-form-field>
-        </div>
+          <mat-form-field class="table-responsive-row" fxFlex="50">
+            <mat-select placeholder="Categorias *" formControlName="category">
+                <mat-option [value]="category.key" *ngFor="let category of categories">{{category.name}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="delegadoForm.controls.category.errors?.required">
+                A Categoria é obrigatorio
+            </mat-error>
+        </mat-form-field>
+      </div>
 
       <div class="button-row bt-submit">
         <button mat-raised-button class="mat-raised-button mat-primary btn float-right" type="submit" [disabled]="!delegadoForm.valid">{{textSubmit}}</button>

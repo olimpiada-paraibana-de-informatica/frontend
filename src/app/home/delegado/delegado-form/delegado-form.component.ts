@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ValidatorsForm } from 'src/app/shared/validatorsForm';
 import { Delegado } from 'src/app/core/delegado/delegado';
+import { DelegadoService } from 'src/app/core/delegado/delegado.service';
 
 @Component({
   selector: 'app-delegado-form',
@@ -17,6 +18,8 @@ export class DelegadoFormComponent implements OnInit {
   delegadoForm: FormGroup;
   @Output() childSubmit = new EventEmitter<Delegado>();
   
+  private categories = [];
+
   cities = [{
     id:"1",
     name: "Sousa"
@@ -25,9 +28,12 @@ export class DelegadoFormComponent implements OnInit {
     name:"Olivedos"
   }];
 
-  constructor() { }
+  constructor( private delegadoService: DelegadoService) { }
 
   ngOnInit() {
+    this.delegadoService.getCategories().subscribe((res)=>{
+      this.categories = res;
+    })
     this.delegadoForm = new FormGroup({
       name: new FormControl(this.delegado.name, [Validators.required]),
       email: new FormControl(this.delegado.email, [Validators.required, Validators.email]),
@@ -36,6 +42,7 @@ export class DelegadoFormComponent implements OnInit {
       passwordConfirm: new FormControl('', [Validators.required]),
       schoolName: new FormControl(this.delegado.schoolName, [Validators.required]),
       schoolCity: new FormControl(this.delegado.schoolCity, [Validators.required]),
+      category: new FormControl('', [Validators.required]),
     }, {
       validators: [ ValidatorsForm.MatchEmail, ValidatorsForm.MatchPassword ]
     });
