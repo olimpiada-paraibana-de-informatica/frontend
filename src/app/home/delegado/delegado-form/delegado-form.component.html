@@ -39,7 +39,7 @@
           <mat-error *ngIf="delegadoForm.controls.emailConfirm.errors?.email">
             Email inválido
           </mat-error>
-          <mat-error *ngIf="delegadoForm.controls.emailConfirm.errors?.MatchEmail && delegadoForm.controls.emailConfirm.value != '' && !delegadoForm.controls.email.errors?.email">
+          <mat-error *ngIf="delegadoForm.controls.emailConfirm.errors?.MatchEmail && delegadoForm.controls.emailConfirm.value != '' && !delegadoForm.controls.delegateEmail.errors?.email">
             Os emails estão diferentes
           </mat-error>
         </mat-form-field>
