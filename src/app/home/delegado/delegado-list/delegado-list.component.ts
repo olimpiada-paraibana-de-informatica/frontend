@@ -44,11 +44,15 @@ export class DelegadoListComponent implements OnInit {
   }
   
   getUsers() {
+    this.delegadoService.getSchools().subscribe(res=>{
+      this.data = new MatTableDataSource(res["content"]);
       this.data.paginator = this.paginator;
       this.rerender = true;
       this.rf.detectChanges();
       this.rerender = false;
       this.isLoadingResults = false;
+    })
+      
   }
 
   redirectEdit(delegado: Delegado) {

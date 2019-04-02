@@ -6,7 +6,7 @@ export class ValidatorsForm {
 
      
      static MatchEmail(AC: AbstractControl): any {
-        const email = AC.get('email').value; // to get value in input tag
+        const email = AC.get('delegateEmail').value; // to get value in input tag
         const confirmEmail = AC.get('emailConfirm').value; // to get value in input tag
          if (email != confirmEmail) {
              AC.get('emailConfirm').setErrors( {MatchEmail: true} );

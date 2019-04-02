@@ -20,7 +20,12 @@ export class CriarDelegadoComponent implements OnInit {
   }
 
   createDelegado(delegado: Delegado) {
-    console.log("criando delegado "+ delegado.email);
+    this.delegadoService.createDelegado(delegado).subscribe(res=>{
+      this.openSnackBar("Escola cadastrada com sucesso", []);
+      this.router.navigate(["/home/delegado"]);
+    },err=>{
+      this.openSnackBar("Erro ao cadastrar escola", []);
+    })
   }
 
   openSnackBar(message: string, config) {

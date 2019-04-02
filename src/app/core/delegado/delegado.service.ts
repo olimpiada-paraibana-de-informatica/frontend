@@ -9,14 +9,26 @@ import { environment } from 'src/environments/environment';
 })
 export class DelegadoService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   getDelegado(id) : Observable<Delegado>{
-    return ;
+    return this.http.get<any>(`${environment.apiBaseUrl}/api/schools/${id}`);
   }
 
-  getCategories() : any {
-    return this.httpClient.get(environment.apiBaseUrl + '/api/categories');
+  getCategories() : Observable<any[]>{
+    return this.http.get<any[]>(`${environment.apiBaseUrl}/api/categories`);
+  }
+
+  createDelegado(delegado){
+    return this.http.post<any[]>(`${environment.apiBaseUrl}/api/schools`, delegado);
+  }
+
+  getCities(){
+    return this.http.get<any[]>(`${environment.apiBaseUrl}/api/cities?stateAbbreviation=PB`);
+  }
+
+  getSchools(){
+    return this.http.get<any[]>(`${environment.apiBaseUrl}/api/schools`);
   }
 
 }

@@ -6,6 +6,7 @@ import { AuthGuardService } from './auth-guard.service';
 import { DelegadoListComponent } from './delegado/delegado-list/delegado-list.component';
 import { CriarDelegadoComponent } from './delegado/criar-delegado/criar-delegado.component';
 import { EditarDelegadoComponent } from './delegado/editar-delegado/editar-delegado.component';
+import { DelegadoResolverService } from './resolvers/delegado-resolver.service';
 
 const routes: Routes = [{
   path: 'home',
@@ -22,7 +23,7 @@ const routes: Routes = [{
         {
           path: 'editar/:delegadoId',
           component: EditarDelegadoComponent,
-          resolve: { },
+          resolve: { delegado: DelegadoResolverService},
           data: { permission: 'U_US' },
           canActivate: []
         }

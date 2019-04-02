@@ -1,8 +1,9 @@
 export class Delegado {
     id: number;
-    name = '';
-    email = '';
+    delegateName = '';
+    delegateEmail = '';
     password = '';
     schoolName = '';
-    schoolCity = '';
+    schoolCityCbo = '';
+    opiCategories = [];
 }

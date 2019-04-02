@@ -11,10 +11,10 @@
             </mat-form-field>
 
             <mat-form-field class="table-responsive-row" fxFlex="50">
-              <mat-select placeholder="Cidade do Colégio *" formControlName="schoolCity">
-                  <mat-option [value]="city.id" *ngFor="let city of cities">{{city.name}}</mat-option>
+              <mat-select placeholder="Cidade do Colégio *" formControlName="schoolCityCbo">
+                  <mat-option [value]="city.cboCode" *ngFor="let city of cities">{{city.name}}</mat-option>
               </mat-select>
-              <mat-error *ngIf="delegadoForm.controls.schoolCity.errors?.required">
+              <mat-error *ngIf="delegadoForm.controls.schoolCityCbo.errors?.required">
                   A Cidade do Colégio é obrigatória
               </mat-error>
           </mat-form-field>
@@ -22,11 +22,11 @@
 
       <div fxLayout="row" fxLayoutGap="15px">
         <mat-form-field class="table-responsive-row" fxFlex="50">
-          <input matInput placeholder="Email *" formControlName="email">
-          <mat-error *ngIf="delegadoForm.controls.email.errors?.required">
+          <input matInput placeholder="Email *" formControlName="delegateEmail">
+          <mat-error *ngIf="delegadoForm.controls.delegateEmail.errors?.required">
             O email é obrigatório
           </mat-error>
-          <mat-error *ngIf="delegadoForm.controls.email.errors?.email">
+          <mat-error *ngIf="delegadoForm.controls.delegateEmail.errors?.email">
             Email inválido
           </mat-error>
         </mat-form-field>
@@ -69,20 +69,41 @@
 
       <div fxLayout="row" fxLayoutGap="15px">
           <mat-form-field class="table-responsive-row" fxFlex="50">
-            <input matInput placeholder="Nome do Delegado *" formControlName="name">
-            <mat-error *ngIf="delegadoForm.controls.name.errors?.required">
+            <input matInput placeholder="Nome do Delegado *" formControlName="delegateName">
+            <mat-error *ngIf="delegadoForm.controls.delegateName.errors?.required">
               O nome do delegado é obrigatório
             </mat-error>
           </mat-form-field>
-          <mat-form-field class="table-responsive-row" fxFlex="50">
-            <mat-select placeholder="Categorias *" formControlName="category">
-                <mat-option [value]="category.key" *ngFor="let category of categories">{{category.name}}</mat-option>
-            </mat-select>
-            <mat-error *ngIf="delegadoForm.controls.category.errors?.required">
-                A Categoria é obrigatorio
-            </mat-error>
-        </mat-form-field>
       </div>
+
+      <div fxLayout="row" fxLayoutGap="15px">
+        <table mat-table [dataSource]="categories" >
+          <ng-container matColumnDef="select" >
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox (change)="$event.checked ? selectAll() : deselectAll()" [checked]="selectedPrivileges.hasValue() && isAllSelected()">
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let category">
+              <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selectedPrivileges.toggle(category.key) : null"
+                [checked]="selectedPrivileges.isSelected(category.key)">
+              </mat-checkbox>
+            </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Nome da Categoria </th>
+            <td mat-cell *matCellDef="let category"> {{category.name}} </td>
+          </ng-container>
+    
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let category; columns: displayedColumns;" (click)="selectedPrivileges.toggle(category.key)"></tr>
+        </table>
+        
+      </div>
+      <mat-paginator [pageSizeOptions]="[5,10, 30, 100]" 
+                 [pageSize]="5"
+                 showFirstLastButtons 
+    ></mat-paginator>
 
       <div class="button-row bt-submit">
         <button mat-raised-button class="mat-raised-button mat-primary btn float-right" type="submit" [disabled]="!delegadoForm.valid">{{textSubmit}}</button>

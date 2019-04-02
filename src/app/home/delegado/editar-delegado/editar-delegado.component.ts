@@ -21,13 +21,15 @@ export class EditarDelegadoComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe((data) => {
+      console.log(data);
       this.delegado = data.delegado;
-      this.delegado.email = data.delegado.username;
+      console.log(this.delegado)
+      this.delegado.delegateEmail = data.delegado.delegateEmail;
     });
   }
 
-  editdelegado(delegado: Delegado) {
-      this.openSnackBar('Delegado '+delegado.name+' editado com sucesso');
+  editDelegado(delegado: Delegado) {
+      this.openSnackBar('Delegado '+delegado.delegateName+' editado com sucesso');
   }
 
   openSnackBar(message: string, config?) {
