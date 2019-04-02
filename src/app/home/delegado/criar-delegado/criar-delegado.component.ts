@@ -24,7 +24,13 @@ export class CriarDelegadoComponent implements OnInit {
       this.openSnackBar("Escola cadastrada com sucesso", []);
       this.router.navigate(["/home/delegado"]);
     },err=>{
-      this.openSnackBar("Erro ao cadastrar escola", []);
+      
+      if(err.error.errorCode === "DELEGATE_ALREADY_EXISTS"){
+        this.openSnackBar(err.error.message, []);
+      }else{
+        this.openSnackBar("Erro ao cadastrar escola", []);
+      }
+      
     })
   }
 
