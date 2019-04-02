@@ -72,6 +72,12 @@ export class DelegadoListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        this.delegadoService.removeDelegado(delegado.id).subscribe(res=>{
+          this.getUsers();
+          this.openSnackBar("Delegado removido com sucesso", []);
+        },err=>{
+          this.openSnackBar("Erro ao remover ", []);
+        })
         console.log("removido");
       }
     });

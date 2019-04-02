@@ -31,4 +31,12 @@ export class DelegadoService {
     return this.http.get<any[]>(`${environment.apiBaseUrl}/api/schools`);
   }
 
+  editDelegado(id, delegado){
+    return this.http.put<any>(`${environment.apiBaseUrl}/api/schools/${id}`,delegado);
+  }
+
+  removeDelegado(id){
+    return this.http.delete<any>(`${environment.apiBaseUrl}/api/schools/${id}`);
+  }
+
 }
