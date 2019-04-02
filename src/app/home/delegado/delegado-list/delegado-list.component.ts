@@ -65,8 +65,8 @@ export class DelegadoListComponent implements OnInit {
       height: '300px',
       width: '400px',
       data: {
-        title: 'Remover delegado '+ delegado.firstName,
-        mensagem: 'Tem certeza que deseja remover esse delegado?'
+        title: 'Remover escola '+ delegado.schoolName,
+        mensagem: 'Tem certeza que deseja remover essa escola?'
       }
     });
 
@@ -74,11 +74,10 @@ export class DelegadoListComponent implements OnInit {
       if (result) {
         this.delegadoService.removeDelegado(delegado.id).subscribe(res=>{
           this.getUsers();
-          this.openSnackBar("Delegado removido com sucesso", []);
+          this.openSnackBar("Escola removida com sucesso", []);
         },err=>{
           this.openSnackBar("Erro ao remover ", []);
         })
-        console.log("removido");
       }
     });
   }

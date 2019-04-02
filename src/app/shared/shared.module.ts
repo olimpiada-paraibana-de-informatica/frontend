@@ -105,6 +105,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatDatepickerModule,
     MatNativeDateModule,
     FlexLayoutModule,
+  ],entryComponents: [
+    RemoveDialogComponent,
   ],
 })
 export class SharedModule { }
