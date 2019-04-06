@@ -7,6 +7,7 @@ import { DelegadoListComponent } from './delegado/delegado-list/delegado-list.co
 import { CriarDelegadoComponent } from './delegado/criar-delegado/criar-delegado.component';
 import { EditarDelegadoComponent } from './delegado/editar-delegado/editar-delegado.component';
 import { DelegadoResolverService } from './resolvers/delegado-resolver.service';
+import {CriarAlunoComponent} from './aluno/criar-aluno/criar-aluno.component';
 
 const routes: Routes = [{
   path: 'home',
@@ -28,7 +29,13 @@ const routes: Routes = [{
           canActivate: []
         }
       ]
-    }]
+    },
+    {path: 'aluno',
+    children: [
+      {path: 'novo', component: CriarAlunoComponent, canActivate: [], data: { }}
+    ]
+    }
+    ]
 }];
 
 @NgModule({
