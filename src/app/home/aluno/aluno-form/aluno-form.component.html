@@ -6,32 +6,28 @@
         <mat-form-field class="table-responsive-row" fxFlex="50">
           <input matInput placeholder="Nome da aluno *" formControlName="studentName">
           <mat-error *ngIf="alunoForm.controls.studentName.errors?.required">
-            O Nome do Aluno é obrigatório
+            Nome do Aluno é obrigatório
           </mat-error>
         </mat-form-field>
-      </div>
 
-      <div fxLayout="row" fxLayoutGap="15px">
         <mat-form-field class="table-responsive-row" fxFlex="50">
-          <input matInput placeholder="Genero *" formControlName="studentGender">
+          <mat-select placeholder="Gênero *" formControlName="studentGender">
+            <mat-option [value]="genre.id" *ngFor="let genre of genders">{{genre.name}}</mat-option>
+          </mat-select>
           <mat-error *ngIf="alunoForm.controls.studentGender.errors?.required">
             O genero é obrigatório
           </mat-error>
-          <mat-error *ngIf="alunoForm.controls.studentGender.errors?.email">
-            Email inválido
+        </mat-form-field>
+
+        <mat-form-field class="table-responsive-row" fxFlex="50">
+          <input matInput placeholder="Data de nascimento *" formControlName="studentBirth">
+          <mat-error *ngIf="alunoForm.controls.studentBirth.errors?.required">
+            Data de nascimento é obrigatório
           </mat-error>
         </mat-form-field>
 
       </div>
 
-      <div fxLayout="row" fxLayoutGap="15px">
-        <mat-form-field class="table-responsive-row" fxFlex="48">
-          <input matInput placeholder="Série do Aluno *" formControlName="studentDegree">
-          <mat-error *ngIf="alunoForm.controls.studentDegree.errors?.required">
-            A série do aluno é obrigatório
-          </mat-error>
-        </mat-form-field>
-      </div>
       <mat-paginator [pageSizeOptions]="[5,10, 30, 100]"
                      [pageSize]="10"
                      showFirstLastButtons
@@ -42,4 +38,5 @@
       </div>
     </form>
   </div>
+
 </mat-card>

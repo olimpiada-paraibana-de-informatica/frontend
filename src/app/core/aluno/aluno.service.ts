@@ -27,4 +27,9 @@ export class AlunoService {
   removeAluno(id) {
     return this.http.delete(`${environment.apiBaseUrl}/api/students/${id}`);
   }
+
+  getGenders() {
+    return this.http.get<any[]>(`${environment.apiBaseUrl}/api/genres`);
+  }
+
 }

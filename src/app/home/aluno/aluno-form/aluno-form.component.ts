@@ -23,11 +23,34 @@ export class AlunoFormComponent implements OnInit {
 
   selectedPrivileges: SelectionModel<string>;
 
+  genders = [{
+    id:"1",
+    name: "Feminino"
+  },{
+    id: "2",
+    name:"Masculino"
+  },
+    {
+      id:3,
+      name: "Não binário"
+    }];
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(alunoService: AlunoService) { }
+  constructor(private alunoService: AlunoService) { }
 
   ngOnInit() {
+    this.getGenders();
+    this.alunoForm = new FormGroup({
+      studentName: new FormControl(this.aluno.name, [Validators.required]),
+      studentGender: new FormControl(this.aluno.genre, [Validators.required]),
+      studentBirth: new FormControl(this.aluno.dateBirth, [Validators.required])
+    });
+
+  }
+
+  getGenders(){
+
   }
 
   submitForm() {
