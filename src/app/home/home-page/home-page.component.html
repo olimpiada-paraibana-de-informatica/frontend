@@ -9,24 +9,24 @@
     >
     <mat-toolbar color="primary" class="mat-elevation-z2">Menu</mat-toolbar>
     <mat-nav-list class="" >
-      <a mat-list-item [routerLink]="'/home/dashboard'">
+      <a mat-list-item [routerLink]="'/dashboard'">
         <mat-icon mat-list-icon class="material-icons" >dashboard</mat-icon>
         <h4 mat-line>Dashboard</h4>
       </a>
-      <a mat-list-item [matMenuTriggerFor]="menu"  fxLayoutGap="15px">
+      <a mat-list-item [matMenuTriggerFor]="menu"  fxLayoutGap="15px" *ngIf="verifySchool()">
         <mat-icon mat-list-icon class="material-icons" >supervised_user_circle
         </mat-icon>
         <h4 mat-line>Escolas</h4>
         <mat-menu #menu="matMenu" class="teste" xPosition="before" [overlapTrigger]="true"> 
-            <a [routerLink]="'/home/delegado/novo'"><button mat-menu-item >Cadastrar</button></a>
-            <a [routerLink]="'/home/delegado'"><button mat-menu-item>Listar</button></a>
+            <a [routerLink]="'/delegado/novo'"><button mat-menu-item >Cadastrar</button></a>
+            <a [routerLink]="'/delegado'"><button mat-menu-item *ngIf="tokenService.hasPrivilege('I_SC')">Listar</button></a>
         </mat-menu>
       </a>
-      <a mat-list-item [matMenuTriggerFor]="menu2"  fxLayoutGap="15px">
+      <a mat-list-item [matMenuTriggerFor]="menu2"  fxLayoutGap="15px" *ngIf="tokenService.hasPrivilege('IA_ST')">
         <mat-icon mat-list-icon class="material-icons" >person_add</mat-icon>
         <h4 mat-line>Estudantes</h4>
         <mat-menu #menu2="matMenu" class="teste" xPosition="before" [overlapTrigger]="true">
-          <a [routerLink]="'/home/aluno/novo'"><button mat-menu-item >Cadastrar</button></a>
+          <a [routerLink]="'/aluno/novo'"><button mat-menu-item >Cadastrar</button></a>
         </mat-menu>
       </a>
 
@@ -45,9 +45,12 @@
       <span>Olimpíada Paraibana de Informática</span>
       <span class="example-spacer"></span>
       <small class="font-12">{{first}}</small>
-      <button mat-icon-button (click)="logout()">
+      <button mat-icon-button (click)="logout()" *ngIf="tokenService.isAuthenticated()">
         <mat-icon aria-label="Sair">exit_to_app</mat-icon>
       </button>
+      <a (click)="login()"  *ngIf="!tokenService.isAuthenticated()">
+        <h4 mat-line>Login</h4>
+      </a>
     </mat-toolbar>
 
     <div style="padding: 60px 150px 0 150px">

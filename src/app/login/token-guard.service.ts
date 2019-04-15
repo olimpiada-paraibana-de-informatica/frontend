@@ -11,7 +11,7 @@ export class TokenGuardService {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     if (this.auth.isAuthenticated()) {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/']);
       return false;
     }
     if (this.auth.isTokenExpired()) {

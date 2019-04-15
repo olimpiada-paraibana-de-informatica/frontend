@@ -10,9 +10,9 @@ import { DelegadoResolverService } from './resolvers/delegado-resolver.service';
 import {CriarAlunoComponent} from './aluno/criar-aluno/criar-aluno.component';
 
 const routes: Routes = [{
-  path: 'home',
+  path: '',
   component: HomePageComponent,
-  canActivate: [AuthGuardService],
+  canActivate: [],
   children: [
     { path: '', component: DashboardComponent },
     { path: 'dashboard', component: DashboardComponent },
@@ -32,7 +32,7 @@ const routes: Routes = [{
     },
     {path: 'aluno',
     children: [
-      {path: 'novo', component: CriarAlunoComponent, canActivate: [], data: { }}
+      {path: 'novo', component: CriarAlunoComponent, canActivate: [], data: { permission: 'IA_ST'}}
     ]
     }
     ]
