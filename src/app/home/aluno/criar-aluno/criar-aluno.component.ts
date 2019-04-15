@@ -25,9 +25,9 @@ export class CriarAlunoComponent implements OnInit {
   createAluno(aluno: Aluno) {
     this.alunoService.createAluno(aluno).subscribe(res => {
       this.openSnackBar('Aluno Cadastrado com sucesso', []);
-      this.router.navigate(['home/student']);
+      this.router.navigate(['home/aluno']);
     }, err =>{
-      if (err._error.errorCode === '') {
+      if (err.error.errorCode === '') {
         this.openSnackBar(err.error.message, []);
       } else {
         this.openSnackBar('Erro ao cadastrar aluno', []);

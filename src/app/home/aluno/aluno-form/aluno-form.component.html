@@ -18,12 +18,14 @@
             O genero é obrigatório
           </mat-error>
         </mat-form-field>
-
+        
         <mat-form-field class="table-responsive-row" fxFlex="50">
-          <input matInput placeholder="Data de nascimento *" formControlName="studentBirth">
+          <input matInput [matDatepicker]="picker" placeholder="Data de nascimento *" formControlName="studentBirth">
           <mat-error *ngIf="alunoForm.controls.studentBirth.errors?.required">
             Data de nascimento é obrigatório
           </mat-error>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
       </div>
