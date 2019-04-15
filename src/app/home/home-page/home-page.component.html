@@ -18,7 +18,7 @@
         </mat-icon>
         <h4 mat-line>Escolas</h4>
         <mat-menu #menu="matMenu" class="teste" xPosition="before" [overlapTrigger]="true"> 
-            <a [routerLink]="'/delegado/novo'"><button mat-menu-item *ngIf="tokenService.hasPrivilege('C_SC')">Cadastrar</button></a>
+            <a [routerLink]="'/delegado/novo'"><button mat-menu-item *ngIf="!tokenService.isAuthenticated() || tokenService.hasPrivilege('C_SC')">Cadastrar</button></a>
             <a [routerLink]="'/delegado'"><button mat-menu-item *ngIf="tokenService.hasPrivilege('I_SC')">Listar</button></a>
         </mat-menu>
       </a>
