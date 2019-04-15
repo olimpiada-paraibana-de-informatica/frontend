@@ -20,8 +20,8 @@ const routes: Routes = [{
     {
       path: 'delegado',
       children: [
-        { path: '', component: DelegadoListComponent, canActivate: [PermissionGuardService], data: {  permission: 'C_SC' } },
-        { path: 'novo', component: CriarDelegadoComponent, canActivate: [PermissionGuardService], data: {  permission: 'I_SC' } },
+        { path: '', component: DelegadoListComponent, canActivate: [PermissionGuardService], data: {  permission: 'I_SC' } },
+        { path: 'novo', component: CriarDelegadoComponent, canActivate: [], data: {  permission: 'C_SC' } },
         {
           path: 'editar/:delegadoId',
           component: EditarDelegadoComponent,
