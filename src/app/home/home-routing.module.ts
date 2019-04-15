@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomePageComponent } from './home-page/home-page.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuardService } from './auth-guard.service';
+import { PermissionGuardService } from './permission-guard.service';
 import { DelegadoListComponent } from './delegado/delegado-list/delegado-list.component';
 import { CriarDelegadoComponent } from './delegado/criar-delegado/criar-delegado.component';
 import { EditarDelegadoComponent } from './delegado/editar-delegado/editar-delegado.component';
@@ -19,20 +20,20 @@ const routes: Routes = [{
     {
       path: 'delegado',
       children: [
-        { path: '', component: DelegadoListComponent, canActivate: [], data: {  } },
-        { path: 'novo', component: CriarDelegadoComponent, canActivate: [], data: {  } },
+        { path: '', component: DelegadoListComponent, canActivate: [PermissionGuardService], data: {  permission: 'C_SC' } },
+        { path: 'novo', component: CriarDelegadoComponent, canActivate: [PermissionGuardService], data: {  permission: 'I_SC' } },
         {
           path: 'editar/:delegadoId',
           component: EditarDelegadoComponent,
           resolve: { delegado: DelegadoResolverService},
-          data: { permission: 'U_US' },
-          canActivate: []
+          data: { permission: 'UA_SC' },
+          canActivate: [PermissionGuardService]
         }
       ]
     },
     {path: 'aluno',
     children: [
-      {path: 'novo', component: CriarAlunoComponent, canActivate: [], data: { permission: 'IA_ST'}}
+      {path: 'novo', component: CriarAlunoComponent, canActivate: [PermissionGuardService], data: { permission: 'IA_ST'}}
     ]
     }
     ]

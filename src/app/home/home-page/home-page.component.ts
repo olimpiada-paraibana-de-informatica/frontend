@@ -44,7 +44,7 @@ export class HomePageComponent implements OnInit {
   }
 
   verifySchool(){
-    return !this.tokenService.isAuthenticated() || this.tokenService.hasPrivilege('C_SC'); 
+    return !this.tokenService.isAuthenticated() || this.tokenService.hasPrivilege('C_SC') || this.tokenService.hasPrivilege('I_SC'); 
   }
 
   openSnackBar(message: string, config) {
