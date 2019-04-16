@@ -16,11 +16,12 @@ import { HeaderComponent } from '../shared/components/header/header.component';
 import { CriarAlunoComponent } from './aluno/criar-aluno/criar-aluno.component';
 import { AlunoFormComponent } from './aluno/aluno-form/aluno-form.component';
 import { AlunoListComponent } from './aluno/aluno-list/aluno-list.component';
+import { EditarAlunoComponent } from './aluno/editar-aluno/editar-aluno.component';
 
 
 @NgModule({
   declarations: [HomePageComponent, 
-    DashboardComponent, DelegadoFormComponent, DelegadoListComponent, CriarDelegadoComponent, EditarDelegadoComponent, CriarAlunoComponent, AlunoFormComponent, AlunoListComponent],
+    DashboardComponent, DelegadoFormComponent, DelegadoListComponent, CriarDelegadoComponent, EditarDelegadoComponent, CriarAlunoComponent, AlunoFormComponent, AlunoListComponent, EditarAlunoComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

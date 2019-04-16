@@ -44,11 +44,11 @@ export class AlunoListComponent implements OnInit {
   }
 
   getAlunos() {
-    
+    //todo
   }
 
   redirectEdit(aluno: Aluno) {
-    //todo
+    this.router.navigate(['/home/aluno/editar', aluno.id]);
   }
 
   openDialogRemove(aluno: Aluno): void {

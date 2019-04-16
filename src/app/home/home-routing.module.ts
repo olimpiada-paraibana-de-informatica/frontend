@@ -10,6 +10,8 @@ import { EditarDelegadoComponent } from './delegado/editar-delegado/editar-deleg
 import { DelegadoResolverService } from './resolvers/delegado-resolver.service';
 import {CriarAlunoComponent} from './aluno/criar-aluno/criar-aluno.component';
 import { AlunoListComponent } from './aluno/aluno-list/aluno-list.component';
+import { EditarAlunoComponent } from './aluno/editar-aluno/editar-aluno.component';
+import { AlunoResolverService } from './resolvers/aluno-resolver.service';
 
 const routes: Routes = [{
   path: '',
@@ -35,7 +37,14 @@ const routes: Routes = [{
     {path: 'aluno',
     children: [
       {path: '', component: AlunoListComponent, canActivate: [PermissionGuardService], data: { permission: 'IA_ST'}},
-      {path: 'novo', component: CriarAlunoComponent, canActivate: [PermissionGuardService], data: { permission: 'IA_ST'}}
+      {path: 'novo', component: CriarAlunoComponent, canActivate: [PermissionGuardService], data: { permission: 'IA_ST'}},
+      {
+        path: 'editar/:alunoId',
+        component: EditarAlunoComponent,
+        resolve: { aluno: AlunoResolverService},
+        data: { permission: 'UA_SC' },
+        canActivate: [PermissionGuardService]
+      }
     ]
     }
     ]
