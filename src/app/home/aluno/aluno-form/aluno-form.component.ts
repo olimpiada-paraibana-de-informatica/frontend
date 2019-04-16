@@ -4,10 +4,11 @@ import {ValidatorsForm} from '../../../shared/validatorsForm';
 import {Aluno} from '../../../core/aluno/aluno';
 import {AlunoService} from '../../../core/aluno/aluno.service';
 import {SelectionModel} from '@angular/cdk/collections';
-import {MatTableDataSource, MatPaginator, MatSnackBar} from '@angular/material';
+import {MatTableDataSource, MatPaginator, MatSnackBar, MatDialog} from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { TokenService } from 'src/app/core/token/token.service';
 import { DelegadoService } from 'src/app/core/delegado/delegado.service';
+import { RemoveDialogComponent } from 'src/app/shared/components/remove-dialog/remove-dialog.component';
 
 @Component({
   selector: 'app-aluno-form',
@@ -46,7 +47,8 @@ export class AlunoFormComponent implements OnInit {
 
   constructor(private alunoService: AlunoService,
     private delegadoService: DelegadoService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog,
     ) { }
 
   ngOnInit() {
@@ -125,12 +127,30 @@ export class AlunoFormComponent implements OnInit {
     else this.addDependent(formDirective);
   }
 
+  removeDependent(row, i){
+    const dialogRef = this.dialog.open(RemoveDialogComponent, {
+      height: '300px',
+      width: '400px',
+      data: {
+        title: 'Remover estudante',
+        mensagem: 'Tem certeza que deseja remover ' +row.nome+'?'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+       
+      }
+    });
+  }
+
   enviarLista(){
     this.alunoService.createAlunoByDelegado(this.alunosList.data).subscribe(res=>{
       this.openSnackBar("Estudantes cadastrados com sucesso", []);
       this.getStudents();
     })
   }
+
 
 
   openSnackBar(message: string, config) {
