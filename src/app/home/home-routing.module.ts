@@ -9,6 +9,7 @@ import { CriarDelegadoComponent } from './delegado/criar-delegado/criar-delegado
 import { EditarDelegadoComponent } from './delegado/editar-delegado/editar-delegado.component';
 import { DelegadoResolverService } from './resolvers/delegado-resolver.service';
 import {CriarAlunoComponent} from './aluno/criar-aluno/criar-aluno.component';
+import { AlunoListComponent } from './aluno/aluno-list/aluno-list.component';
 
 const routes: Routes = [{
   path: '',
@@ -33,6 +34,7 @@ const routes: Routes = [{
     },
     {path: 'aluno',
     children: [
+      {path: '', component: AlunoListComponent, canActivate: [PermissionGuardService], data: { permission: 'IA_ST'}},
       {path: 'novo', component: CriarAlunoComponent, canActivate: [PermissionGuardService], data: { permission: 'IA_ST'}}
     ]
     }

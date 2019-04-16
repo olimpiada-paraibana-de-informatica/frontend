@@ -32,4 +32,8 @@ export class AlunoService {
     return this.http.get<any[]>(`${environment.apiBaseUrl}/api/genres`);
   }
 
+  getAlunos(){
+    
+  }
+
 }
