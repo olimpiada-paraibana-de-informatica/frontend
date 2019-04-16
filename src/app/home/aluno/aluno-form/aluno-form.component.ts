@@ -139,10 +139,12 @@ export class AlunoFormComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-       
+        this.alunosList.data = this.alunosList.data.splice(i+1, 1);
       }
     });
   }
+
+  
 
   enviarLista(){
     this.alunoService.createAlunoByDelegado(this.alunosList.data).subscribe(res=>{
