@@ -8,10 +8,8 @@ import { DelegadoListComponent } from './delegado/delegado-list/delegado-list.co
 import { CriarDelegadoComponent } from './delegado/criar-delegado/criar-delegado.component';
 import { EditarDelegadoComponent } from './delegado/editar-delegado/editar-delegado.component';
 import { DelegadoResolverService } from './resolvers/delegado-resolver.service';
-import {CriarAlunoComponent} from './aluno/criar-aluno/criar-aluno.component';
-import { AlunoListComponent } from './aluno/aluno-list/aluno-list.component';
-import { EditarAlunoComponent } from './aluno/editar-aluno/editar-aluno.component';
 import { AlunoResolverService } from './resolvers/aluno-resolver.service';
+import { AlunoFormComponent } from './aluno/aluno-form/aluno-form.component';
 
 const routes: Routes = [{
   path: '',
@@ -36,16 +34,8 @@ const routes: Routes = [{
     },
     {path: 'aluno',
     children: [
-      {path: '', component: AlunoListComponent, canActivate: [PermissionGuardService], data: { permission: 'IA_ST'}},
-      {path: 'novo', component: CriarAlunoComponent, canActivate: [PermissionGuardService], data: { permission: 'IA_ST'}},
-      {
-        path: 'editar/:alunoId',
-        component: EditarAlunoComponent,
-        resolve: { aluno: AlunoResolverService},
-        data: { permission: 'UA_SC' },
-        canActivate: [PermissionGuardService]
-      }
-    ]
+      {path: 'novo', component: AlunoFormComponent, canActivate: [PermissionGuardService], data: { permission: 'IA_ST'},},
+    ],
     }
     ]
 }];

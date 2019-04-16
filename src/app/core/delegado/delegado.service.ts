@@ -39,4 +39,8 @@ export class DelegadoService {
     return this.http.delete<any>(`${environment.apiBaseUrl}/api/schools/${id}`);
   }
 
+  getLoggedUser(){
+    return this.http.get<any>(`${environment.apiBaseUrl}/api/users/data`);
+  }
+
 }

@@ -21,9 +21,7 @@ export class EditarDelegadoComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe((data) => {
-      console.log(data);
       this.delegado = data.delegado;
-      console.log(this.delegado)
       this.delegado.delegateEmail = data.delegado.delegateEmail;
     });
   }
