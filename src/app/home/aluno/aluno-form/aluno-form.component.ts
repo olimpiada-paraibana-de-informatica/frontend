@@ -133,7 +133,7 @@ export class AlunoFormComponent implements OnInit {
       width: '400px',
       data: {
         title: 'Remover estudante',
-        mensagem: 'Tem certeza que deseja remover ' +row.nome+'?'
+        mensagem: 'Tem certeza que deseja remover ' +row.name+'?'
       }
     });
 
