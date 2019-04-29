@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {FormGroup, FormControl , Validators, FormGroupDirective } from '@angular/forms';
+import {FormGroup, FormControl , Validators, FormGroupDirective, FormBuilder } from '@angular/forms';
 import {ValidatorsForm} from '../../../shared/validatorsForm';
 import {Aluno} from '../../../core/aluno/aluno';
 import {AlunoService} from '../../../core/aluno/aluno.service';
@@ -28,6 +28,8 @@ export class AlunoFormComponent implements OnInit {
   selectedIndex: number;
   edit = false;
   delegado: any;
+  alunoPlanilha:  MatTableDataSource<any[]>;
+  nomeArquivo: String = "Enviar Planilha";
 
   selectedPrivileges: SelectionModel<string>;
 
@@ -43,18 +45,26 @@ export class AlunoFormComponent implements OnInit {
       name: "Outro"
     }];
 
+  uploadForm : FormGroup;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private alunoService: AlunoService,
     private delegadoService: DelegadoService,
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
+    private formBuilder: FormBuilder
     ) { }
 
   ngOnInit() {
     this.alunosList = new MatTableDataSource<any>();
     this.getStudents();
     this.getGenders();
+
+    this.uploadForm = this.formBuilder.group({
+      profile: ['']
+    });
+
     this.alunoForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       genre: new FormControl('', [Validators.required]),
@@ -68,6 +78,22 @@ export class AlunoFormComponent implements OnInit {
     this.alunoService.getAlunosByDelegado().subscribe(res=>{
       console.log(res);
       this.alunosList = new MatTableDataSource<any>(res['content']);
+    })
+  }
+
+  onFileChange(teste){
+    let reader = new FileReader();
+    let file = teste.target.files[0];
+    this.nomeArquivo = file.name;
+    if (teste.target.files.length > 0) {
+      const file = teste.target.files[0];
+      this.uploadForm.get('profile').setValue(file);
+    }
+    const formData = new FormData();
+    formData.append('file', this.uploadForm.get('profile').value);
+    this.alunoService.createAlunosByExcel(formData).subscribe(res=>{
+      console.log(res)
+      this.getStudents();
     })
   }
 
@@ -150,10 +176,17 @@ export class AlunoFormComponent implements OnInit {
     this.alunoService.createAlunoByDelegado(this.alunosList.data).subscribe(res=>{
       this.openSnackBar("Estudantes cadastrados com sucesso", []);
       this.getStudents();
-    })
+    });
   }
 
+  enviarPlanilha(event : any[]){
+    this.alunoService.createAlunosByExcel(event).subscribe(res=>{
+      this.openSnackBar("Estudantes cadastrados com sucesso", []);
+      this.getStudents();
+    });
+  }
 
+  
 
   openSnackBar(message: string, config) {
     this.snackBar.open(message, 'fechar', {

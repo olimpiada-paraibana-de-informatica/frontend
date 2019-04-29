@@ -20,6 +20,10 @@ export class AlunoService {
     return this.http.post<any[]>(`${environment.apiBaseUrl}/api/delegate/students`, aluno);
   }
 
+  createAlunosByExcel(file) {
+    return this.http.post<any[]>(`${environment.apiBaseUrl}/api/delegates/excel/schools/competitors`, file);
+  }
+
   editAluno(id, aluno) {
     return this.http.put<any>(`${environment.apiBaseUrl}/api/students/${id}`, aluno);
   }
@@ -35,5 +39,7 @@ export class AlunoService {
   getAlunosByDelegado(){
     return this.http.get<any[]>(`${environment.apiBaseUrl}/api/delegate/students`)
   }
+
+
 
 }
