@@ -21,7 +21,7 @@ export class AlunoService {
   }
 
   createAlunosByExcel(file) {
-    return this.http.post<any[]>(`${environment.apiBaseUrl}/api/delegates/excel/schools/competitors`, file);
+    return this.http.post<any[]>(`${environment.apiBaseUrl}/api/delegates/excel/schools/students`, file);
   }
 
   editAluno(id, aluno) {
