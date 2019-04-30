@@ -79,11 +79,11 @@
       <div class="button-row bt-submit">
         <button mat-raised-button class="mat-raised-button mat-primary btn float-right" type="button" (click)="enviarLista()" >Enviar lista</button>
 
-        <div fxFlex="33" class="marginTop">
-          <button fxFlex="33" type="button" mat-raised-button (click)="fileInput.click()">
+        <div  class="marginTop">
+          <button  type="button"class = "mat-raised-button btn float-right" (click)="fileInput.click()">
               <mat-icon>file_upload</mat-icon>
               {{nomeArquivo}}</button>
-            <input fxFlex="33" hidden type="file" (change)="onFileChange($event)" #fileInput>
+            <input  hidden type="file" (change)="onFileChange($event)" #fileInput>
             
       </div>
       </div>
