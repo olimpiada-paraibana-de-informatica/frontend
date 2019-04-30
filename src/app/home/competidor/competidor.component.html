@@ -49,4 +49,15 @@
       [pageSize]="30"
       showFirstLastButtons 
       ></mat-paginator>
+      <div class="button-row bt-submit">
+        <button mat-raised-button class="mat-raised-button mat-primary btn float-right" type="button" (click)="enviarLista()" >Enviar lista</button>
+
+        <div  class="marginTop">
+          <button  type="button"class = "mat-raised-button btn float-right" (click)="fileInput.click()">
+              <mat-icon>file_upload</mat-icon>
+              {{nomeArquivo}}</button>
+            <input  hidden type="file" (change)="onFileChange($event)" #fileInput>
+            
+      </div>
+      </div>
     </mat-card>

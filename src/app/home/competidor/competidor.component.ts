@@ -33,6 +33,8 @@ export class CompetidorComponent implements OnInit {
 
   ]
 
+  nomeArquivo: String = "Enviar Planilha";
+
   constructor(
     private competidorService : CompetidorService
   ) { }
@@ -44,10 +46,10 @@ export class CompetidorComponent implements OnInit {
 
   getCompetidores(){
     this.competidoresList = new MatTableDataSource<any>(this.mock);
-   // this.competidorService.getCompetidoresByDelegado().subscribe(res=>{
-   //   console.log(res);
-   //   this.competidoresList = new MatTableDataSource<any>(res['content']);
-   // })
+   this.competidorService.getCompetidoresByDelegado().subscribe(res=>{
+     console.log(res);
+     this.competidoresList = new MatTableDataSource<any>(res['content']);
+   })
   }
 
 }
