@@ -20,12 +20,12 @@ const routes: Routes = [{
     { path: '', component: DashboardComponent },
     { path: 'dashboard', component: DashboardComponent },
     {
-      path: 'delegado',
+      path: 'escolas',
       children: [
         { path: '', component: DelegadoListComponent, canActivate: [PermissionGuardService], data: {  permission: 'I_SC' } },
         { path: 'novo', component: CriarDelegadoComponent, canActivate: [], data: {  permission: 'C_SC' } },
         {
-          path: 'editar/:delegadoId',
+          path: 'delegado/editar/:delegadoId',
           component: EditarDelegadoComponent,
           resolve: { delegado: DelegadoResolverService},
           data: { permission: 'UA_SC' },
