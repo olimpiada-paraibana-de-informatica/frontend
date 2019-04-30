@@ -14,12 +14,13 @@ import { EditarDelegadoComponent } from './delegado/editar-delegado/editar-deleg
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HeaderComponent } from '../shared/components/header/header.component';
 import { AlunoFormComponent } from './aluno/aluno-form/aluno-form.component';
+import { CompetidorComponent } from './competidor/competidor.component';
 
 
 
 @NgModule({
   declarations: [HomePageComponent, 
-    DashboardComponent, DelegadoFormComponent, DelegadoListComponent, CriarDelegadoComponent, EditarDelegadoComponent, AlunoFormComponent],
+    DashboardComponent, DelegadoFormComponent, DelegadoListComponent, CriarDelegadoComponent, EditarDelegadoComponent, AlunoFormComponent, CompetidorComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

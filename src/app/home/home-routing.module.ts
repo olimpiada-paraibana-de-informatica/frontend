@@ -10,6 +10,7 @@ import { EditarDelegadoComponent } from './delegado/editar-delegado/editar-deleg
 import { DelegadoResolverService } from './resolvers/delegado-resolver.service';
 import { AlunoResolverService } from './resolvers/aluno-resolver.service';
 import { AlunoFormComponent } from './aluno/aluno-form/aluno-form.component';
+import { CompetidorComponent } from './competidor/competidor.component';
 
 const routes: Routes = [{
   path: '',
@@ -19,12 +20,12 @@ const routes: Routes = [{
     { path: '', component: DashboardComponent },
     { path: 'dashboard', component: DashboardComponent },
     {
-      path: 'delegado',
+      path: 'escolas',
       children: [
         { path: '', component: DelegadoListComponent, canActivate: [PermissionGuardService], data: {  permission: 'I_SC' } },
         { path: 'novo', component: CriarDelegadoComponent, canActivate: [], data: {  permission: 'C_SC' } },
         {
-          path: 'editar/:delegadoId',
+          path: 'delegado/editar/:delegadoId',
           component: EditarDelegadoComponent,
           resolve: { delegado: DelegadoResolverService},
           data: { permission: 'UA_SC' },
@@ -36,7 +37,8 @@ const routes: Routes = [{
     children: [
       {path: 'novo', component: AlunoFormComponent, canActivate: [PermissionGuardService], data: { permission: 'IA_ST'},},
     ],
-    }
+    },
+    {path: 'competidor', component: CompetidorComponent, canActivate: [PermissionGuardService], data: { permission: 'IA_ST'}}
     ]
 }];
 
