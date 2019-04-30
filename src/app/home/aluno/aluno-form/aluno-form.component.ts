@@ -31,19 +31,11 @@ export class AlunoFormComponent implements OnInit {
   alunoPlanilha:  MatTableDataSource<any[]>;
   nomeArquivo: String = "Enviar Planilha";
 
+  lista: any;
+
   selectedPrivileges: SelectionModel<string>;
 
-  genders = [{
-    id: "FEMININO",
-    name: "Feminino"
-  },{
-    id: "MASCULINO",
-    name:"Masculino"
-  },
-    {
-      id:"OUTRO",
-      name: "Outro"
-    }];
+  genders = [];
 
   uploadForm : FormGroup;
 
@@ -91,10 +83,7 @@ export class AlunoFormComponent implements OnInit {
     }
     const formData = new FormData();
     formData.append('file', this.uploadForm.get('profile').value);
-    this.alunoService.createAlunosByExcel(formData).subscribe(res=>{
-      console.log(res)
-      this.getStudents();
-    })
+    this.lista = formData;
   }
 
   getGenders(){
@@ -106,7 +95,7 @@ export class AlunoFormComponent implements OnInit {
       name:"Masculino"
     },
       {
-        id:"OUTRO",
+        id:"NÃO_BINÁRIO",
         name: "Outro"
       }];
   }
@@ -170,13 +159,21 @@ export class AlunoFormComponent implements OnInit {
     });
   }
 
-  
-
   enviarLista(){
-    this.alunoService.createAlunoByDelegado(this.alunosList.data).subscribe(res=>{
-      this.openSnackBar("Estudantes cadastrados com sucesso", []);
-      this.getStudents();
-    });
+    if(this.lista){
+      this.alunoService.createAlunosByExcel(this.lista).subscribe(res=>{
+        this.openSnackBar("Estudantes cadastrados com sucesso", []);
+        this.getStudents();
+      })
+      console.log("planilha")
+    }else{
+      this.alunoService.createAlunoByDelegado(this.alunosList.data).subscribe(res=>{
+        this.openSnackBar("Estudantes cadastrados com sucesso", []);
+        this.getStudents();
+      });
+      console.log("lista")
+    }
+    
   }
 
   enviarPlanilha(event : any[]){
