@@ -9,6 +9,10 @@ export class CompetidorService {
 
   constructor(private http: HttpClient) { }
 
+  createCompetidoresByExcel(file) {
+    return this.http.post<any[]>(`${environment.apiBaseUrl}/api/delegates/excel/schools/competitors`, file);
+  }
+
   getCompetidoresByDelegado(){
     return this.http.get<any[]>(`${environment.apiBaseUrl}/api/delegates/competitors`)
   }

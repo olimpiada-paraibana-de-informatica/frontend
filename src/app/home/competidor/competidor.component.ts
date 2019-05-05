@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CompetidorService } from 'src/app/core/competidor/competidor.service';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatSnackBar } from '@angular/material';
+import {FormGroup, FormControl , Validators, FormGroupDirective, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-competidor',
@@ -9,8 +10,10 @@ import { MatTableDataSource } from '@angular/material';
 })
 export class CompetidorComponent implements OnInit {
 
-  displayedColumns: string[] = ['actions','name','genre', 'dateBirth','category','grade','score'];
+  displayedColumns: string[] = ['actions', 'name', 'genre', 'dateBirth', 'category', 'grade', 'score'];
   competidoresList: MatTableDataSource<any[]>;
+  uploadForm : FormGroup;
+  lista: any;
   mock = [
 
     {
@@ -36,20 +39,54 @@ export class CompetidorComponent implements OnInit {
   nomeArquivo: String = "Enviar Planilha";
 
   constructor(
-    private competidorService : CompetidorService
+    private competidorService: CompetidorService,
+    private snackBar: MatSnackBar,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
     this.competidoresList = new MatTableDataSource<any>();
     this.getCompetidores();
+
+    this.uploadForm = this.formBuilder.group({
+      profile:['']
+    });
+
   }
 
-  getCompetidores(){
-    this.competidoresList = new MatTableDataSource<any>(this.mock);
-   this.competidorService.getCompetidoresByDelegado().subscribe(res=>{
-     console.log(res);
-     this.competidoresList = new MatTableDataSource<any>(res['content']);
-   })
+  getCompetidores() {
+    this.competidorService.getCompetidoresByDelegado().subscribe(res => {
+      console.log(res);
+      this.competidoresList = new MatTableDataSource<any>(res['content']);
+    })
   }
+
+  onFileChange(teste){
+    let reader = new FileReader();
+    let file = teste.target.files[0];
+    this.nomeArquivo = file.name;
+    if (teste.target.files.length > 0) {
+      const file = teste.target.files[0];
+      this.uploadForm.get('profile').setValue(file);
+    }
+    const formData = new FormData();
+    formData.append('file', this.uploadForm.get('profile').value);
+    this.lista = formData;
+  }
+
+  enviarPlanilha(){
+    this.competidorService.createCompetidoresByExcel(this.lista).subscribe(res=>{
+      this.openSnackBar("Competidores Cadastrados Com Sucesso", []);
+      this.getCompetidores();
+    })
+  }
+
+  openSnackBar(message: string, config) {
+    this.snackBar.open(message, 'fechar', {
+      duration: 9000,
+      panelClass: config
+    });
+  }
+
 
 }
