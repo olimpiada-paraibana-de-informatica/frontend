@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {FormGroup, FormControl , Validators, FormGroupDirective } from '@angular/forms';
+import {FormGroup, FormControl , Validators, FormGroupDirective, FormBuilder } from '@angular/forms';
 import {ValidatorsForm} from '../../../shared/validatorsForm';
 import {Aluno} from '../../../core/aluno/aluno';
 import {AlunoService} from '../../../core/aluno/aluno.service';
@@ -28,20 +28,16 @@ export class AlunoFormComponent implements OnInit {
   selectedIndex: number;
   edit = false;
   delegado: any;
+  alunoPlanilha:  MatTableDataSource<any[]>;
+  nomeArquivo: String = "Enviar Planilha";
+
+  lista: any;
 
   selectedPrivileges: SelectionModel<string>;
 
-  genders = [{
-    id: "FEMININO",
-    name: "Feminino"
-  },{
-    id: "MASCULINO",
-    name:"Masculino"
-  },
-    {
-      id:"OUTRO",
-      name: "Outro"
-    }];
+  genders = [];
+
+  uploadForm : FormGroup;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -49,12 +45,18 @@ export class AlunoFormComponent implements OnInit {
     private delegadoService: DelegadoService,
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
+    private formBuilder: FormBuilder
     ) { }
 
   ngOnInit() {
     this.alunosList = new MatTableDataSource<any>();
     this.getStudents();
     this.getGenders();
+
+    this.uploadForm = this.formBuilder.group({
+      profile: ['']
+    });
+
     this.alunoForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       genre: new FormControl('', [Validators.required]),
@@ -71,6 +73,19 @@ export class AlunoFormComponent implements OnInit {
     })
   }
 
+  onFileChange(teste){
+    let reader = new FileReader();
+    let file = teste.target.files[0];
+    this.nomeArquivo = file.name;
+    if (teste.target.files.length > 0) {
+      const file = teste.target.files[0];
+      this.uploadForm.get('profile').setValue(file);
+    }
+    const formData = new FormData();
+    formData.append('file', this.uploadForm.get('profile').value);
+    this.lista = formData;
+  }
+
   getGenders(){
     this.genders = [{
       id: "FEMININO",
@@ -80,7 +95,7 @@ export class AlunoFormComponent implements OnInit {
       name:"Masculino"
     },
       {
-        id:"OUTRO",
+        id:"NÃO_BINÁRIO",
         name: "Outro"
       }];
   }
@@ -144,16 +159,31 @@ export class AlunoFormComponent implements OnInit {
     });
   }
 
-  
-
   enviarLista(){
-    this.alunoService.createAlunoByDelegado(this.alunosList.data).subscribe(res=>{
-      this.openSnackBar("Estudantes cadastrados com sucesso", []);
-      this.getStudents();
-    })
+    if(this.lista){
+      this.alunoService.createAlunosByExcel(this.lista).subscribe(res=>{
+        this.openSnackBar("Estudantes cadastrados com sucesso", []);
+        this.getStudents();
+      })
+      console.log("planilha")
+    }else{
+      this.alunoService.createAlunoByDelegado(this.alunosList.data).subscribe(res=>{
+        this.openSnackBar("Estudantes cadastrados com sucesso", []);
+        this.getStudents();
+      });
+      console.log("lista")
+    }
+    
   }
 
+  enviarPlanilha(event : any[]){
+    this.alunoService.createAlunosByExcel(event).subscribe(res=>{
+      this.openSnackBar("Estudantes cadastrados com sucesso", []);
+      this.getStudents();
+    });
+  }
 
+  
 
   openSnackBar(message: string, config) {
     this.snackBar.open(message, 'fechar', {
