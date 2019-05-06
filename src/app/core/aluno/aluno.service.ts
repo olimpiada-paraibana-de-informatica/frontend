@@ -40,6 +40,8 @@ export class AlunoService {
     return this.http.get<any[]>(`${environment.apiBaseUrl}/api/delegate/students`)
   }
 
-
+  downloadPlanilhaEx(){
+    return this.http.get(`${environment.apiBaseUrl}/api/delegates/excel/schools/students/download`, {responseType: 'blob'});
+  }
 
 }

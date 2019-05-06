@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TokenService } from 'src/app/core/token/token.service';
 import { DelegadoService } from 'src/app/core/delegado/delegado.service';
 import { RemoveDialogComponent } from 'src/app/shared/components/remove-dialog/remove-dialog.component';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-aluno-form',
@@ -183,7 +184,9 @@ export class AlunoFormComponent implements OnInit {
     });
   }
 
-  
+  baixarPlanilhaEx(){
+    this.alunoService.downloadPlanilhaEx().subscribe(data => saveAs(data, `Planilha Exemplo Aluno.xlsx`));
+  }
 
   openSnackBar(message: string, config) {
     this.snackBar.open(message, 'fechar', {

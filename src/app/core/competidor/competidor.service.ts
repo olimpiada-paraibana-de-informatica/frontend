@@ -17,4 +17,8 @@ export class CompetidorService {
     return this.http.get<any[]>(`${environment.apiBaseUrl}/api/delegates/competitors`)
   }
 
+  downloadPlanilhaEx(){
+    return this.http.get(`${environment.apiBaseUrl}/api/delegates/excel/schools/competitors/download`, {responseType: 'blob'});
+  }
+
 }

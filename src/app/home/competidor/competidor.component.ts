@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CompetidorService } from 'src/app/core/competidor/competidor.service';
 import { MatTableDataSource, MatSnackBar } from '@angular/material';
 import {FormGroup, FormControl , Validators, FormGroupDirective, FormBuilder } from '@angular/forms';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-competidor',
@@ -79,6 +80,10 @@ export class CompetidorComponent implements OnInit {
       this.openSnackBar("Competidores Cadastrados Com Sucesso", []);
       this.getCompetidores();
     })
+  }
+
+  baixarPlanilhaEx(){
+    this.competidorService.downloadPlanilhaEx().subscribe(data => saveAs(data, `Planilha Exemplo Competidor.xlsx`));
   }
 
   openSnackBar(message: string, config) {

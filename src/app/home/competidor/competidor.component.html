@@ -50,6 +50,7 @@
       showFirstLastButtons 
       ></mat-paginator>
       <div class="button-row bt-submit">
+          <button mat-raised-button class="mat-raised-button mat-primary btn float-right" type="button" (click)="baixarPlanilhaEx()" >Download Exemplo</button>
         <button mat-raised-button class="mat-raised-button mat-primary btn float-right" type="button" (click)="enviarPlanilha()" >Enviar lista</button>
 
         <div  class="marginTop">
@@ -58,6 +59,6 @@
               {{nomeArquivo}}</button>
             <input  hidden type="file" (change)="onFileChange($event)" #fileInput>
             
-      </div>
+        </div>
       </div>
     </mat-card>
