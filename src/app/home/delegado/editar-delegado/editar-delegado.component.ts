@@ -29,7 +29,7 @@ export class EditarDelegadoComponent implements OnInit {
   editDelegado(delegado: Delegado) {
       this.delegadoService.editDelegado(delegado.id, delegado).subscribe(res=>{
         this.openSnackBar('Escola '+delegado.schoolName+' editada com sucesso');
-        this.router.navigate(["/home/delegado"]);
+        this.router.navigate(["/home/escolas"]);
       },err=>{
         console.log(err);
       })
