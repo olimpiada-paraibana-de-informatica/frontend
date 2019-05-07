@@ -25,7 +25,7 @@ export class CriarDelegadoComponent implements OnInit {
     this.delegadoService.createDelegado(delegado).subscribe(res=>{
       this.openSnackBar("Escola cadastrada com sucesso", []);
       if (this.tokenService.hasPrivilege('I_SC')) 
-        {this.router.navigate(["/delegado"]); }
+        {this.router.navigate(["/escolas"]); }
       else { this.router.navigate(["/"])}
     },err=>{
       
