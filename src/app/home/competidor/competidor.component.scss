@@ -1,0 +1,44 @@
+.table-responsive {
+  width: 100% !important;
+  margin: 0 auto;
+  .table {
+      margin: auto;
+  }
+  .table-status {
+      margin-top: 2%;
+      margin-bottom: 2% !important;
+  }
+}
+
+.table-responsive-row {
+  margin: 1%;
+  width: 48%;
+  .errorMsg {
+      margin: 1%;
+      width: 48%;
+  }
+}
+
+.button-row {
+  margin: 1%;
+}
+.float-right {
+  float:right;
+}
+
+.bt-submit {
+  height: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.button-row {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+}

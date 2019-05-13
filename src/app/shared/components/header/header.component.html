@@ -1,0 +1,9 @@
+<div fxLayout="row" fxLayoutAlign="start center" style="margin-bottom: 20px">
+  <div fxFlex>
+      <span class="mat-display-1">{{title}}</span>
+  </div>
+  <div>
+      <button mat-raised-button class="mat-raised-button mat-primary" id="btn" [routerLink]="redirectLink" *ngIf="showButton">{{labelButton}}</button>
+  </div>
+</div>
+<mat-divider class="header-divider"></mat-divider>

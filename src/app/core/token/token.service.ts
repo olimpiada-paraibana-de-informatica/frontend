@@ -24,6 +24,9 @@ export class TokenService {
   
   hasPrivilege(privilege: string): boolean {
     const privileges = localStorage.getItem('privileges');
+    if(!privileges){
+      return false;
+    }
     return privileges.includes(privilege);
   }
 

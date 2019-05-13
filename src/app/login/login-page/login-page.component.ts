@@ -19,7 +19,8 @@ export class LoginPageComponent implements OnInit {
 
   login(): void {
     this.auth.login(this.loginForm.value, () => {
-      this.router.navigate(['home']);
+      this.router.navigate(['/']);
+      this.openSnackBar("Login realizado com sucesso",[]);
     }, (error) => {
       this.snackBar.open(error, '', {
         duration: 2000,
@@ -31,6 +32,13 @@ export class LoginPageComponent implements OnInit {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
+    });
+  }
+
+  openSnackBar(message: string, config) {
+    this.snackBar.open(message, 'fechar', {
+      duration: 9000,
+      panelClass: config
     });
   }
 
