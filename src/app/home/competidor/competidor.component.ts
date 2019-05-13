@@ -11,7 +11,7 @@ import { saveAs } from 'file-saver';
 })
 export class CompetidorComponent implements OnInit {
 
-  displayedColumns: string[] = ['actions', 'name', 'genre', 'dateBirth', 'category', 'grade', 'score'];
+  displayedColumns: string[] = ['actions', 'name', 'genre', 'dateBirth', 'category', 'grade', 'scoreLevelOne','scoreLevelTwo'];
   competidoresList: MatTableDataSource<any[]>;
   uploadForm : FormGroup;
   lista: any;

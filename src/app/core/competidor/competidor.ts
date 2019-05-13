@@ -6,5 +6,6 @@ export class Competidor {
     grade: '';
     name: '';
     studentId: number;
-    score: ''
+    scoreLevelOne: '';
+    scoreLevelTwo: ''
 }
