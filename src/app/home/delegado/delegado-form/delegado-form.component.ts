@@ -33,6 +33,15 @@ export class DelegadoFormComponent implements OnInit {
     name:"Olivedos"
   }];
 
+  states = [{
+    id:"1",
+    name: "Sousa"
+  },{
+    id: "2",
+    name:"Olivedos"
+  }];
+
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor( private delegadoService: DelegadoService) { 
@@ -40,7 +49,7 @@ export class DelegadoFormComponent implements OnInit {
 
   ngOnInit() {
     
-    this.getCities();
+    //this.getCities();
     this.delegadoForm = new FormGroup({
       delegateName: new FormControl(this.delegado.delegateName, [Validators.required]),
       delegateEmail: new FormControl(this.delegado.delegateEmail, [Validators.required, Validators.email]),
@@ -49,6 +58,7 @@ export class DelegadoFormComponent implements OnInit {
       passwordConfirm: new FormControl('', [Validators.required]),
       schoolName: new FormControl(this.delegado.schoolName, [Validators.required]),
       schoolCityCbo: new FormControl(this.delegado.schoolCityCbo, [Validators.required]),
+      schoolStateCbo: new FormControl(this.delegado.schoolStateCbo, [Validators.required]),
       opiCategories: new FormControl(this.delegado.opiCategories, [])
     }, {
       validators: [ ValidatorsForm.MatchEmail, ValidatorsForm.MatchPassword ]
@@ -59,9 +69,15 @@ export class DelegadoFormComponent implements OnInit {
     
   }
 
-  getCities(){
-    this.delegadoService.getCities().subscribe(res=>{
+  getCities(cboCode){
+    this.delegadoService.getCities(cboCode).subscribe(res=>{
       this.cities = res;
+    })
+  }
+
+  getStates(){
+    this.delegadoService.getStates().subscribe(res=>{
+      this.states = res;
     })
   }
 
