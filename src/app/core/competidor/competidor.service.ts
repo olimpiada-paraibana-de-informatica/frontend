@@ -21,4 +21,9 @@ export class CompetidorService {
     return this.http.get(`${environment.apiBaseUrl}/api/delegates/excel/schools/competitors/download`, {responseType: 'blob'});
   }
 
+  getSegundaFase(){
+    console.log("TODO Service");
+    return this.http.get<any[]>(`${environment.apiBaseUrl}/api/delegates/competitors`);
+  }
+
 }

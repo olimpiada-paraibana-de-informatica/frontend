@@ -15,6 +15,7 @@ export class CompetidorComponent implements OnInit {
   competidoresList: MatTableDataSource<any[]>;
   uploadForm : FormGroup;
   lista: any;
+  fase = "Competidores - 1º Fase";
   mock = [
 
     {
@@ -79,6 +80,21 @@ export class CompetidorComponent implements OnInit {
     this.competidorService.createCompetidoresByExcel(this.lista).subscribe(res=>{
       this.openSnackBar("Competidores Cadastrados Com Sucesso", []);
       this.getCompetidores();
+    })
+  }
+
+  get1Fase(){
+    this.fase = "Competidores - 1º Fase";
+    this.getCompetidores();
+  }
+
+  get2Fase(){
+    this.fase = "Competidores - 2º Fase";
+    this.competidorService.getSegundaFase().subscribe(res =>{
+      this.competidoresList = new MatTableDataSource<any>(res['content']);
+      this.openSnackBar("Alunos classificados para segunda fase", []);
+    }, err => {
+      this.openSnackBar("Erro ao listar alunos da segunda fase", []);
     })
   }
 
