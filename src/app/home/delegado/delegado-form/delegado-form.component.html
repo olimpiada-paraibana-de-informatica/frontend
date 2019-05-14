@@ -18,6 +18,16 @@
                   A Cidade do Colégio é obrigatória
               </mat-error>
           </mat-form-field>
+
+          <mat-form-field class="table-responsive-row" fxFlex="50">
+            <mat-select placeholder="Tipo" formControlName="schoolType">
+                <mat-option [value]="type.status" *ngFor="let type of types">{{type.name}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="delegadoForm.controls.schoolType.errors?.required">
+                O tipo da escola é obrigatório
+            </mat-error>
+        </mat-form-field>
+
           </div>
 
       <div fxLayout="row" fxLayoutGap="15px">

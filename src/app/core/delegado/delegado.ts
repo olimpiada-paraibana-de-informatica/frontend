@@ -6,4 +6,5 @@ export class Delegado {
     schoolName = '';
     schoolCityCbo = '';
     opiCategories = [];
+    isPublic = true;
 }

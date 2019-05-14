@@ -33,6 +33,14 @@ export class DelegadoFormComponent implements OnInit {
     name:"Olivedos"
   }];
 
+  types = [{
+    status: true,
+    name: "Pública"
+  },{
+    status: false,
+    name: "Privada"
+  }]
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor( private delegadoService: DelegadoService) { 
@@ -49,7 +57,8 @@ export class DelegadoFormComponent implements OnInit {
       passwordConfirm: new FormControl('', [Validators.required]),
       schoolName: new FormControl(this.delegado.schoolName, [Validators.required]),
       schoolCityCbo: new FormControl(this.delegado.schoolCityCbo, [Validators.required]),
-      opiCategories: new FormControl(this.delegado.opiCategories, [])
+      opiCategories: new FormControl(this.delegado.opiCategories, []),
+      schoolType: new FormControl(this.delegado.isPublic,[Validators.required])
     }, {
       validators: [ ValidatorsForm.MatchEmail, ValidatorsForm.MatchPassword ]
     });
