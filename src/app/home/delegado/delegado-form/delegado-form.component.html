@@ -14,8 +14,8 @@
 
         <div fxLayout="row" fxLayoutGap="15px">
           <mat-form-field class="table-responsive-row" fxFlex="50">
-            <mat-select placeholder="Estado da escola *" (change)="getStates()" formControlName="schoolStateCbo">
-                <mat-option [value]="states.cboCode" *ngFor="let state of states">{{state.name}}</mat-option>
+            <mat-select placeholder="Estado da escola *" (change)="getCities($event.target.value)" formControlName="schoolStateCbo">
+                <mat-option [value]="state.cboCode" *ngFor="let state of states">{{state.name}}</mat-option>
             </mat-select>
             <mat-error *ngIf="delegadoForm.controls.schoolStateCbo.errors?.required">
                 O Estado do Colégio é obrigatória

@@ -50,6 +50,7 @@ export class DelegadoFormComponent implements OnInit {
   ngOnInit() {
     
     //this.getCities();
+    this.getStates();
     this.delegadoForm = new FormGroup({
       delegateName: new FormControl(this.delegado.delegateName, [Validators.required]),
       delegateEmail: new FormControl(this.delegado.delegateEmail, [Validators.required, Validators.email]),
@@ -70,9 +71,13 @@ export class DelegadoFormComponent implements OnInit {
   }
 
   getCities(cboCode){
-    this.delegadoService.getCities(cboCode).subscribe(res=>{
-      this.cities = res;
-    })
+    if(cboCode){
+      this.delegadoService.getCities(cboCode).subscribe(res=>{
+        this.cities = res;
+      });
+    } else{
+      this.cities = null;
+    }
   }
 
   getStates(){
