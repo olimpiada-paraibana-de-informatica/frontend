@@ -38,7 +38,10 @@
         <th mat-header-cell *matHeaderCellDef>E-mail</th>
         <td mat-cell *matCellDef="let row">{{row.delegateEmail}}</td>
       </ng-container>
-
+      <ng-container matColumnDef="filed">
+        <th mat-header-cell *matHeaderCellDef>Enviou Alunos</th>
+        <td mat-cell *matCellDef="let row" [ngClass]="{ 'ativo': row.filed === 'true', 'inativo': row.filed === 'false'}"></td>
+      </ng-container>
       
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

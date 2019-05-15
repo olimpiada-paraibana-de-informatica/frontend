@@ -90,12 +90,12 @@ export class CompetidorComponent implements OnInit {
 
   get2Fase(){
     this.fase = "Competidores - 2º Fase";
-    this.competidorService.getSegundaFase().subscribe(res =>{
-      this.competidoresList = new MatTableDataSource<any>(res['content']);
-      this.openSnackBar("Alunos classificados para segunda fase", []);
-    }, err => {
-      this.openSnackBar("Erro ao listar alunos da segunda fase", []);
-    })
+    let segunda = this.competidoresList.data.filter(res=>{
+      return res['level'] === "Segunda Fase";
+    });
+
+    this.competidoresList = new MatTableDataSource<any>(segunda);
+    this.openSnackBar("Alunos classificados para segunda fase", []);
   }
 
   baixarPlanilhaEx(){

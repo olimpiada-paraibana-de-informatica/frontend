@@ -14,7 +14,7 @@ export class CompetidorService {
   }
 
   getCompetidoresByDelegado(){
-    return this.http.get<any[]>(`${environment.apiBaseUrl}/api/delegates/competitors`)
+    return this.http.get<any[]>(`${environment.apiBaseUrl}/api/delegates/competitors?size=100`);
   }
 
   downloadPlanilhaEx(){
