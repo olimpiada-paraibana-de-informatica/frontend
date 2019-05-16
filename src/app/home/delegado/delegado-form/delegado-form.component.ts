@@ -41,6 +41,9 @@ export class DelegadoFormComponent implements OnInit {
     name: "Privada"
   }]
 
+  states = [];
+
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor( private delegadoService: DelegadoService) { 
@@ -58,20 +61,27 @@ export class DelegadoFormComponent implements OnInit {
       schoolName: new FormControl(this.delegado.schoolName, [Validators.required]),
       schoolCityCbo: new FormControl(this.delegado.schoolCityCbo, [Validators.required]),
       opiCategories: new FormControl(this.delegado.opiCategories, []),
-      schoolType: new FormControl(this.delegado.isPublic,[Validators.required])
+      schoolType: new FormControl(this.delegado.isPublic,[Validators.required]),
+      schoolStateCbo: new FormControl(this.delegado.schoolStateCbo, [Validators.required])
     }, {
       validators: [ ValidatorsForm.MatchEmail, ValidatorsForm.MatchPassword ]
     });
     this.loadPrivileges();
     const categories = this.delegado.opiCategories.map(category => category.key);
     this.selectedPrivileges = new SelectionModel<string>(true, categories);
-    
+    this.getStates();
   }
 
   getCities(){
     this.delegadoService.getCities().subscribe(res=>{
       this.cities = res;
     })
+  }
+
+  getStates(){
+      this.delegadoService.getStates().subscribe(res=>{
+        this.states = res;
+      })
   }
 
   loadPrivileges() {

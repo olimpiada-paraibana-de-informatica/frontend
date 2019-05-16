@@ -5,6 +5,7 @@ export class Delegado {
     password = '';
     schoolName = '';
     schoolCityCbo = '';
+    schoolStateCbo = '';
     opiCategories = [];
     isPublic = true;
 }
