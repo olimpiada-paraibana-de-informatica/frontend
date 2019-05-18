@@ -24,7 +24,7 @@ export class DelegadoService {
   }
 
   getCities(estado){
-    return this.http.get<any[]>(`${environment.apiBaseUrl}/api/cities?stateAbbreviation=${estado}`);
+    return this.http.get<any[]>(`${environment.apiBaseUrl}/api/cities?stateCbo=${estado}`);
   }
 
   getStates(){

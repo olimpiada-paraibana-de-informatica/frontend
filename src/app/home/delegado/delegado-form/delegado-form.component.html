@@ -32,7 +32,7 @@
 
           <mat-form-field class="table-responsive-row" fxFlex="50">
             <mat-select placeholder="Tipo" formControlName="schoolType">
-                <mat-option [value]="type.status" *ngFor="let type of types">{{type.name}}</mat-option>
+                <mat-option [value]="type.name" *ngFor="let type of types">{{type.name}}</mat-option>
             </mat-select>
             <mat-error *ngIf="delegadoForm.controls.schoolType.errors?.required">
                 O tipo da escola é obrigatório
