@@ -9,6 +9,12 @@
                 O Nome do Colégio é obrigatório
               </mat-error>
             </mat-form-field>
+            <mat-form-field class="table-responsive-row" fxFlex="50">
+                <input matInput placeholder="Nome do Delegado *" formControlName="delegateName">
+                <mat-error *ngIf="delegadoForm.controls.delegateName.errors?.required">
+                  O nome do delegado é obrigatório
+                </mat-error>
+              </mat-form-field>
 
         </div>
 
@@ -86,15 +92,6 @@
             As senhas estão diferentes
           </mat-error>
         </mat-form-field>
-      </div>
-
-      <div fxLayout="row" fxLayoutGap="15px">
-          <mat-form-field class="table-responsive-row" fxFlex="48">
-            <input matInput placeholder="Nome do Delegado *" formControlName="delegateName">
-            <mat-error *ngIf="delegadoForm.controls.delegateName.errors?.required">
-              O nome do delegado é obrigatório
-            </mat-error>
-          </mat-form-field>
       </div>
 
       <div fxLayout="row" fxLayoutGap="15px">

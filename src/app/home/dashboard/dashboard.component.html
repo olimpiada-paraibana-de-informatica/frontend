@@ -12,6 +12,34 @@
         <img  class="logo-dashboard parce" src="../../../assets/tfg.png" alt="">
     </a>
   </div>
-  
 
 </div>
+<div>
+    <h1 class="parceiros">OBJETIVO</h1>
+    <hr>
+    <p>
+      {{objetivo}}
+    </p>
+</div>
+
+<div>
+    <h1 class="parceiros">CATEGORIAS</h1>
+    <hr>
+    <div class="logo-dashboard" fxLayout="row" fxLayoutGap="15px">
+        <button (click)="setCategoria(1)" class="logo-dashboard" mat-button>Iniciação 1</button> 
+        <button (click)="setCategoria(2)" class="logo-dashboard" mat-button>Iniciação 2</button> 
+        <button (click)="setCategoria(3)" class="logo-dashboard" mat-button>Programação</button> 
+        <button (click)="setCategoria(4)" class="logo-dashboard" mat-button>Avançado Júnior</button>
+        <button (click)="setCategoria(5)" class="logo-dashboard" mat-button>Avançado Senior</button> 
+    </div>
+    <p>
+      {{categoria}}
+    </p>
+
+</div>
+
+<div>
+    <h1 class="parceiros">DATAS</h1>
+    <hr>
+</div>
+
