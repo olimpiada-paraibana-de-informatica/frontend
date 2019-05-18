@@ -23,8 +23,8 @@ export class DelegadoService {
     return this.http.post<any[]>(`${environment.apiBaseUrl}/api/schools`, delegado);
   }
 
-  getCities(){
-    return this.http.get<any[]>(`${environment.apiBaseUrl}/api/cities?stateAbbreviation=PB`);
+  getCities(estado){
+    return this.http.get<any[]>(`${environment.apiBaseUrl}/api/cities?stateAbbreviation=${estado}`);
   }
 
   getStates(){

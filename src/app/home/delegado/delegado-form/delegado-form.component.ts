@@ -26,11 +26,7 @@ export class DelegadoFormComponent implements OnInit {
   
 
   cities = [{
-    id:"1",
-    name: "Sousa"
-  },{
-    id: "2",
-    name:"Olivedos"
+    name: "Escolha um estado"
   }];
 
   types = [{
@@ -51,7 +47,6 @@ export class DelegadoFormComponent implements OnInit {
 
   ngOnInit() {
     
-    this.getCities();
     this.delegadoForm = new FormGroup({
       delegateName: new FormControl(this.delegado.delegateName, [Validators.required]),
       delegateEmail: new FormControl(this.delegado.delegateEmail, [Validators.required, Validators.email]),
@@ -72,8 +67,8 @@ export class DelegadoFormComponent implements OnInit {
     this.getStates();
   }
 
-  getCities(){
-    this.delegadoService.getCities().subscribe(res=>{
+  getCities(estado){
+    this.delegadoService.getCities(estado).subscribe(res=>{
       this.cities = res;
     })
   }
