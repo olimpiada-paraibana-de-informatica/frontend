@@ -3,6 +3,7 @@ import { CompetidorService } from 'src/app/core/competidor/competidor.service';
 import { MatTableDataSource, MatSnackBar } from '@angular/material';
 import {FormGroup, FormControl , Validators, FormGroupDirective, FormBuilder } from '@angular/forms';
 import { saveAs } from 'file-saver';
+import { TokenService } from 'src/app/core/token/token.service';
 
 @Component({
   selector: 'app-competidor',
@@ -15,6 +16,7 @@ export class CompetidorComponent implements OnInit {
   competidoresList: MatTableDataSource<any[]>;
   uploadForm : FormGroup;
   lista: any;
+  segundaFase = false;
   fase = "Competidores - 1º Fase";
   mock = [
 
@@ -43,7 +45,8 @@ export class CompetidorComponent implements OnInit {
   constructor(
     private competidorService: CompetidorService,
     private snackBar: MatSnackBar,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private tokenService : TokenService
   ) { }
 
   ngOnInit() {
@@ -57,10 +60,18 @@ export class CompetidorComponent implements OnInit {
   }
 
   getCompetidores() {
-    this.competidorService.getCompetidoresByDelegado().subscribe(res => {
-      console.log(res);
-      this.competidoresList = new MatTableDataSource<any>(res['content']);
-    })
+    if(this.tokenService.hasPrivilege('I_SC')){
+      this.competidorService.getCompetidores().subscribe(res=>{
+        this.competidoresList = new MatTableDataSource<any>(res['content']);
+      }, err=>{
+        console.log(err);
+      })
+    }else{
+      this.competidorService.getCompetidoresByDelegado().subscribe(res => {
+        this.competidoresList = new MatTableDataSource<any>(res['content']);
+      })
+    }
+    
   }
 
   onFileChange(teste){
@@ -77,10 +88,11 @@ export class CompetidorComponent implements OnInit {
   }
 
   enviarPlanilha(){
-    this.competidorService.createCompetidoresByExcel(this.lista).subscribe(res=>{
-      this.openSnackBar("Competidores Cadastrados Com Sucesso", []);
-      this.getCompetidores();
-    })
+      this.competidorService.createCompetidoresByExcel(this.lista).subscribe(res=>{
+        this.openSnackBar("Competidores Cadastrados Com Sucesso", []);
+        this.getCompetidores();
+      })
+    
   }
 
   get1Fase(){
@@ -93,6 +105,7 @@ export class CompetidorComponent implements OnInit {
     let segunda = this.competidoresList.data.filter(res=>{
       return res['level'] === "Segunda Fase";
     });
+    this.segundaFase = segunda.length > 0;
 
     this.competidoresList = new MatTableDataSource<any>(segunda);
     this.openSnackBar("Alunos classificados para segunda fase", []);

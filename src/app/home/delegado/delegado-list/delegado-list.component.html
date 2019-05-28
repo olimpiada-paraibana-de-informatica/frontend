@@ -17,6 +17,9 @@
         <th mat-header-cell *matHeaderCellDef>Ações</th>
         <td mat-cell *matCellDef="let row">
           <mat-select matPrefix placeholder="Opções">
+              <mat-option [value]="opt-3" *ngIf="tokenService.hasPrivilege('I_SC')" (click)="fileInput.click()"> Enviar notas segunda fase </mat-option>
+              <input  hidden type="file" (change)="onFileChange($event, row)" #fileInput>
+            <mat-option (click)="downloadSegundaFase(row)" [value]="opt-3" *ngIf="tokenService.hasPrivilege('I_SC')"> Baixar lista alunos </mat-option>
             <mat-option (click)="redirectEdit(row)" [value]="opt-2"> Editar </mat-option>
             <mat-option (click)="openDialogRemove(row)" [value]="opt-3" > Remover </mat-option>
           </mat-select>

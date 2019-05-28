@@ -13,6 +13,14 @@ export class CompetidorService {
     return this.http.post<any[]>(`${environment.apiBaseUrl}/api/delegates/excel/schools/competitors`, file);
   }
 
+  competidoresByExcelSegundaFase(file, id) {
+    return this.http.post<any[]>(`${environment.apiBaseUrl}/api/delegates/excel/schools/${id}/level_two`, file);
+  }
+
+  getCompetidores(){
+    return this.http.get<any[]>(`${environment.apiBaseUrl}/api/competitors?size=100`);
+  }
+
   getCompetidoresByDelegado(){
     return this.http.get<any[]>(`${environment.apiBaseUrl}/api/delegates/competitors?size=100`);
   }
@@ -24,6 +32,10 @@ export class CompetidorService {
   getSegundaFase(){
     console.log("TODO Service");
     return this.http.get<any[]>(`${environment.apiBaseUrl}/api/delegates/competitors`);
+  }
+
+  downloadSegundaFase(id){
+    return this.http.get(`${environment.apiBaseUrl}/api/delegates/excel/schools/${id}/level_two/download`,{responseType: 'blob'});
   }
 
 }

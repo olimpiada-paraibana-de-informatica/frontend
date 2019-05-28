@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { TokenService } from 'src/app/core/token/token.service';
 import { Delegado } from 'src/app/core/delegado/delegado';
 import { RemoveDialogComponent } from 'src/app/shared/components/remove-dialog/remove-dialog.component';
+import { CompetidorService } from 'src/app/core/competidor/competidor.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-delegado-list',
@@ -28,6 +30,10 @@ export class DelegadoListComponent implements OnInit {
   isRateLimitReached = false;
   rerender = false;
   filter = false;
+  uploadForm : FormGroup;
+  nomeArquivo: String = "Enviar Planilha";
+  lista: any;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
@@ -36,11 +42,16 @@ export class DelegadoListComponent implements OnInit {
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     private rf: ChangeDetectorRef,
-    public tokenService: TokenService
+    public tokenService: TokenService,
+    private formBuilder: FormBuilder,
+    private competidorService: CompetidorService
   ) {}
 
   ngOnInit() {
     this.getUsers();
+    this.uploadForm = this.formBuilder.group({
+      profile:['']
+    });
   }
   
   getUsers() {
@@ -95,10 +106,32 @@ export class DelegadoListComponent implements OnInit {
     }
   }
 
+  downloadSegundaFase(row){
+    this.competidorService.downloadSegundaFase(row.id).subscribe(res => saveAs(res, `Alunos segunda fase.xlsx`))
+  }
+
   async doRerender() {
     this.rerender = true;
     this.rf.detectChanges();
     this.rerender = false;
+  }
+
+  onFileChange(teste, row){
+    console.log(row);
+    let reader = new FileReader();
+    let file = teste.target.files[0];
+    this.nomeArquivo = file.name;
+    if (teste.target.files.length > 0) {
+      const file = teste.target.files[0];
+      this.uploadForm.get('profile').setValue(file);
+    }
+    const formData = new FormData();
+    formData.append('file', this.uploadForm.get('profile').value);
+    this.lista = formData;
+    this.competidorService.competidoresByExcelSegundaFase(this.lista, row.id).subscribe(res=>{
+      this.openSnackBar("Notas Cadastradas Com Sucesso", []);
+      this.getUsers();
+    })
   }
 
   openSnackBar(message: string, config) {
