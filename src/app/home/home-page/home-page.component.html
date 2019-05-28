@@ -22,12 +22,9 @@
             <a [routerLink]="'/escolas'"><button mat-menu-item *ngIf="tokenService.hasPrivilege('I_SC')">Listar</button></a>
         </mat-menu>
       </a>
-      <a mat-list-item [matMenuTriggerFor]="menu2"  fxLayoutGap="15px" *ngIf="tokenService.hasPrivilege('IA_ST')">
+      <a mat-list-item [routerLink]="'/aluno/novo'" *ngIf="tokenService.hasPrivilege('IA_ST')">
         <mat-icon mat-list-icon class="material-icons" >person_add</mat-icon>
         <h4 mat-line>Estudantes</h4>
-        <mat-menu #menu2="matMenu" class="teste" xPosition="before" [overlapTrigger]="true">
-          <a [routerLink]="'/aluno/novo'"><button mat-menu-item >Cadastrar</button></a>
-        </mat-menu>
       </a>
       <a mat-list-item [routerLink]="'/competidor'" *ngIf="tokenService.hasPrivilege('IA_ST')">
         <mat-icon mat-list-icon class="material-icons" >list</mat-icon>
@@ -52,9 +49,9 @@
       <button mat-icon-button (click)="logout()" *ngIf="tokenService.isAuthenticated()">
         <mat-icon aria-label="Sair">exit_to_app</mat-icon>
       </button>
-      <a (click)="login()"  *ngIf="!tokenService.isAuthenticated()">
-        <h4 mat-line>Login</h4>
-      </a>
+      <button mat-icon-button (click)="login()"  *ngIf="!tokenService.isAuthenticated()">
+          Login
+      </button>
     </mat-toolbar>
 
     <div style="padding: 60px 150px 0 150px">

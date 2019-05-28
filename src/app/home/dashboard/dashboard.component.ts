@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.setCategoria(1);
   }
 
   setCategoria(categoria){
