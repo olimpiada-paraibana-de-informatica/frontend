@@ -9,8 +9,8 @@
     <mat-card>
  
       <div class="example-table-container" >
-        <table mat-table [dataSource]="competidoresList" class="example-table" matSort matSortActive="created" matSortDisableClear
-          matSortDirection="asc">
+        <table mat-table [dataSource]="sortedData" class="example-table" matSort (matSortChange)="sortData($event)" 
+          >
     
           <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef>Ações</th>
@@ -22,8 +22,8 @@
             </td>
           </ng-container>
           <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef>Nome do Aluno</th>
-              <td mat-cell *matCellDef="let row">{{row.name}}</td>
+              <th mat-header-cell mat-sort-header="name" *matHeaderCellDef>Nome do Aluno</th>
+              <td mat-cell  *matCellDef="let row">{{row.name}}</td>
             </ng-container>
             <!-- Number Column -->
             <ng-container matColumnDef="genre">
@@ -44,11 +44,11 @@
                 <td mat-cell *matCellDef="let row">{{row.grade}}</td>
             </ng-container>
             <ng-container matColumnDef="scoreLevelOne">
-                <th mat-header-cell *matHeaderCellDef>Nota Fase 1</th>
+                <th mat-header-cell mat-sort-header="scoreLevelOne" *matHeaderCellDef>Nota Fase 1</th>
                 <td mat-cell *matCellDef="let row">{{row.scoreLevelOne}}</td>
             </ng-container>
             <ng-container matColumnDef="scoreLevelTwo">
-              <th mat-header-cell *matHeaderCellDef>Nota Fase 2</th>
+              <th mat-header-cell mat-sort-header="scoreLevelTwo" *matHeaderCellDef>Nota Fase 2</th>
               <td mat-cell *matCellDef="let row">{{row.scoreLevelTwo}}</td>
           </ng-container>
           

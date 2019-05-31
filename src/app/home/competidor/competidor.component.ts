@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CompetidorService } from 'src/app/core/competidor/competidor.service';
-import { MatTableDataSource, MatSnackBar } from '@angular/material';
+import { MatTableDataSource, MatSnackBar, Sort } from '@angular/material';
 import {FormGroup, FormControl , Validators, FormGroupDirective, FormBuilder } from '@angular/forms';
 import { saveAs } from 'file-saver';
 import { TokenService } from 'src/app/core/token/token.service';
@@ -40,6 +40,8 @@ export class CompetidorComponent implements OnInit {
 
   ]
 
+  sortedData: any[];
+
   nomeArquivo: String = "Enviar Planilha";
 
   constructor(
@@ -47,12 +49,14 @@ export class CompetidorComponent implements OnInit {
     private snackBar: MatSnackBar,
     private formBuilder: FormBuilder,
     private tokenService : TokenService
-  ) { }
+  ) { 
+    
+  }
 
   ngOnInit() {
     this.competidoresList = new MatTableDataSource<any>();
     this.getCompetidores();
-
+   
     this.uploadForm = this.formBuilder.group({
       profile:['']
     });
@@ -63,12 +67,14 @@ export class CompetidorComponent implements OnInit {
     if(this.tokenService.hasPrivilege('I_SC')){
       this.competidorService.getCompetidores().subscribe(res=>{
         this.competidoresList = new MatTableDataSource<any>(res['content']);
+        this.sortedData = this.competidoresList.data.slice();
       }, err=>{
         console.log(err);
       })
     }else{
       this.competidorService.getCompetidoresByDelegado().subscribe(res => {
         this.competidoresList = new MatTableDataSource<any>(res['content']);
+        this.sortedData = this.competidoresList.data.slice();
       })
     }
     
@@ -94,7 +100,27 @@ export class CompetidorComponent implements OnInit {
       })
     
   }
+  sortData(sort: Sort) {
+    const data =  this.competidoresList.data.slice();
+    if (!sort.active || sort.direction === '') {
+      this.sortedData = data;
+      return;
+    }
 
+    this.sortedData = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'scoreLevelOne': return this.compare(a['scoreLevelOne'], b['scoreLevelOne'], isAsc);
+        case 'scoreLevelTwo': return this.compare(a['scoreLevelTwo'], b['scoreLevelTwo'], isAsc);
+        case 'name' : return this.compare(a['name'], b['name'], isAsc)
+        default: return 0;
+      }
+    });
+  }
+
+  compare(a: number | string, b: number | string, isAsc: boolean) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  }
   get1Fase(){
     this.fase = "Competidores - 1º Fase";
     this.getCompetidores();
