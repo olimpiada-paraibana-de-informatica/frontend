@@ -26,9 +26,16 @@
         <mat-icon mat-list-icon class="material-icons" >person_add</mat-icon>
         <h4 mat-line>Estudantes</h4>
       </a>
-      <a mat-list-item [routerLink]="'/competidor'" *ngIf="tokenService.hasPrivilege('IA_ST')">
+      <a mat-list-item [matMenuTriggerFor]="competidor" *ngIf="tokenService.hasPrivilege('IA_ST')">
         <mat-icon mat-list-icon class="material-icons" >list</mat-icon>
         <h4 mat-line>Competidores</h4>
+        <mat-menu #competidor="matMenu" class="teste" xPosition="before" [overlapTrigger]="true"> 
+          <a [routerLink]="'/competidor'"><button mat-menu-item *ngIf="!tokenService.isAuthenticated() || tokenService.hasPrivilege('C_SC')">Iniciação 1</button></a>
+          <a [routerLink]="'/competidor'"><button mat-menu-item *ngIf="tokenService.hasPrivilege('I_SC')">Iniciação 2</button></a>
+          <a [routerLink]="'/competidor'"><button mat-menu-item *ngIf="tokenService.hasPrivilege('I_SC')">Programação</button></a>
+          <a [routerLink]="'/competidor'"><button mat-menu-item *ngIf="tokenService.hasPrivilege('I_SC')">Avançado Junior</button></a>
+          <a [routerLink]="'/competidor'"><button mat-menu-item *ngIf="tokenService.hasPrivilege('I_SC')">Avançado Senior</button></a>
+      </mat-menu>
       </a>
 
     </mat-nav-list>

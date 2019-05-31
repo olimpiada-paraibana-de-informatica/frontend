@@ -1,10 +1,12 @@
 
 <div>
     <app-header [title]="fase" ></app-header>
-    <div class="button-row bt-submit">
-        <button mat-raised-button color="accent" class="mat-primary btn float-right" type="button" (click)="get2Fase()" >2º Fase</button>
-        <button mat-raised-button color="accent" class="mat-primary btn float-right" type="button" (click)="get1Fase()" >1º Fase</button>
-    </div>
+    <div class="button-row">
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="color">
+            <mat-button-toggle  (click)="get1Fase()"  class="color" value="bold">1º Fase</mat-button-toggle>
+            <mat-button-toggle  (click)="get2Fase()" class="color" value="italic">2º Fase</mat-button-toggle>
+          </mat-button-toggle-group>
+      </div>
 </div> 
     <mat-card>
  

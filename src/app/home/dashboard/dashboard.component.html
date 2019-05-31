@@ -26,11 +26,13 @@
     <h1 class="parceiros">CATEGORIAS</h1>
     <hr>
     <div class="logo-dashboard" fxLayout="row" fxLayoutGap="15px">
-        <button (click)="setCategoria(1)" class="logo-dashboard" mat-button>Iniciação 1</button> 
-        <button (click)="setCategoria(2)" class="logo-dashboard" mat-button>Iniciação 2</button> 
-        <button (click)="setCategoria(3)" class="logo-dashboard" mat-button>Programação</button> 
-        <button (click)="setCategoria(4)" class="logo-dashboard" mat-button>Avançado Júnior</button>
-        <button (click)="setCategoria(5)" class="logo-dashboard" mat-button>Avançado Senior</button> 
+        <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style" class="color" fxFlex="100">
+            <mat-button-toggle fxFlex="20" (click)="setCategoria(1)" class="color" value="bold">Iniciação 1</mat-button-toggle>
+            <mat-button-toggle fxFlex="20" (click)="setCategoria(2)" class="color" value="italic">Iniciação 2</mat-button-toggle>
+            <mat-button-toggle fxFlex="20" (click)="setCategoria(3)" class="color" value="underline">Programação</mat-button-toggle>
+            <mat-button-toggle fxFlex="20" (click)="setCategoria(4)" class="color" value="underline">Avançado Júnior</mat-button-toggle>
+            <mat-button-toggle fxFlex="20" (click)="setCategoria(5)" class="color" value="underline">Avançado Senior</mat-button-toggle>
+        </mat-button-toggle-group>
     </div>
     <p class="espacamento">
       {{categoria}}

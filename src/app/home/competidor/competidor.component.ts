@@ -134,6 +134,7 @@ export class CompetidorComponent implements OnInit {
     this.segundaFase = segunda.length > 0;
 
     this.competidoresList = new MatTableDataSource<any>(segunda);
+    this.sortedData = this.competidoresList.data.slice();
     this.openSnackBar("Alunos classificados para segunda fase", []);
   }
 
