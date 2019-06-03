@@ -39,9 +39,6 @@ export class DelegadoFormComponent implements OnInit {
 
   states = [];
 
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-
   constructor( private delegadoService: DelegadoService) { 
   }
 
@@ -82,7 +79,6 @@ export class DelegadoFormComponent implements OnInit {
   loadPrivileges() {
     this.delegadoService.getCategories().subscribe((res: any[]) => {
       this.categories = new MatTableDataSource<any>(res);
-      this.categories.paginator = this.paginator;
       const numSelected = this.selectedPrivileges.selected.length;
       const numRows = this.categories.data.length;
       if(numSelected === numRows){
