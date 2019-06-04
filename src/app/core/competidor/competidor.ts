@@ -8,5 +8,6 @@ export class Competidor {
     studentId: number;
     scoreLevelOne: '';
     scoreLevelTwo: '';
-    level: ''
+    level: '';
+    finalScore: ''
 }

@@ -37,6 +37,18 @@
           <a [routerLink]="'/competidor'"><button mat-menu-item *ngIf="tokenService.hasPrivilege('I_SC')">Avançado Senior</button></a>
       </mat-menu>
       </a>
+      <a mat-list-item [matMenuTriggerFor]="competidor_rank" *ngIf="tokenService.hasPrivilege('IA_ST')">
+        <mat-icon mat-list-icon class="material-icons" >flag</mat-icon>
+        <h4 mat-line>Ranking</h4>
+        <mat-menu #competidor_rank="matMenu" class="teste" xPosition="before" [overlapTrigger]="true"> 
+          <a [routerLink]="'/competidor/ranking'"><button mat-menu-item *ngIf="!tokenService.isAuthenticated() || tokenService.hasPrivilege('C_SC')">Iniciação 1</button></a>
+          <a [routerLink]="'/competidor/ranking'"><button mat-menu-item *ngIf="tokenService.hasPrivilege('I_SC')">Iniciação 2</button></a>
+          <a [routerLink]="'/competidor/ranking'"><button mat-menu-item *ngIf="tokenService.hasPrivilege('I_SC')">Programação</button></a>
+          <a [routerLink]="'/competidor/ranking'"><button mat-menu-item *ngIf="tokenService.hasPrivilege('I_SC')">Avançado Junior</button></a>
+          <a [routerLink]="'/competidor/ranking'"><button mat-menu-item *ngIf="tokenService.hasPrivilege('I_SC')">Avançado Senior</button></a>
+      </mat-menu>
+      </a>
+
 
     </mat-nav-list>
   </mat-sidenav>

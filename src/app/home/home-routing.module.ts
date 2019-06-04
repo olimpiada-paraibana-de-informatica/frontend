@@ -11,6 +11,7 @@ import { DelegadoResolverService } from './resolvers/delegado-resolver.service';
 import { AlunoResolverService } from './resolvers/aluno-resolver.service';
 import { AlunoFormComponent } from './aluno/aluno-form/aluno-form.component';
 import { CompetidorComponent } from './competidor/competidor.component';
+import { CompetidorRankComponent } from './competidor/competidor-rank/competidor-rank.component';
 
 const routes: Routes = [{
   path: '',
@@ -38,7 +39,8 @@ const routes: Routes = [{
       {path: 'novo', component: AlunoFormComponent, canActivate: [PermissionGuardService], data: { permission: 'IA_ST'},},
     ],
     },
-    {path: 'competidor', component: CompetidorComponent, canActivate: [PermissionGuardService], data: { permission: 'IA_ST'}}
+    {path: 'competidor', component: CompetidorComponent, canActivate: [PermissionGuardService], data: { permission: 'IA_ST'}},
+    {path: 'competidor/ranking', component: CompetidorRankComponent, canActivate: [PermissionGuardService], data: { permission: 'I_CO'}},
     ]
 }];
 
