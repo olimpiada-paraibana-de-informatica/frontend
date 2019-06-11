@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { TokenService } from 'src/app/core/token/token.service';
 import { Router } from '@angular/router';
 import { MatDialog, MatSnackBar } from '@angular/material';
+import { CompetidorRankComponent } from 'src/app/home/competidor/competidor-rank/competidor-rank.component'
 
 
 @Component({
@@ -26,7 +27,8 @@ export class HomePageComponent implements OnInit {
     public tokenService: TokenService,
     private router: Router,
     public dialog: MatDialog,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    public competidorRank: CompetidorRankComponent
   ) {
   }
 
@@ -52,6 +54,10 @@ export class HomePageComponent implements OnInit {
       duration: 9000,
       panelClass: config
     });
+  }
+
+  mudaCategoria(categoria: string){
+    this.competidorRank.categoria = categoria;
   }
 
 }

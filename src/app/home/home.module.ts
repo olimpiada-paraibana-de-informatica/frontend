@@ -17,6 +17,7 @@ import { AlunoFormComponent } from './aluno/aluno-form/aluno-form.component';
 import { CompetidorComponent } from './competidor/competidor.component';
 import { CompetidorRankComponent } from './competidor/competidor-rank/competidor-rank.component';
 
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 @NgModule({
@@ -25,10 +26,12 @@ import { CompetidorRankComponent } from './competidor/competidor-rank/competidor
   imports: [
     CommonModule,
     HomeRoutingModule,
+    HttpClientModule,
     SharedModule,
-    FlexLayoutModule,
+    FlexLayoutModule
+    
   ],
-  providers: [AuthGuardService,
+  providers: [AuthGuardService, { provide: HomePageComponent, useValue: {} }, { provide: CompetidorRankComponent, useValue: {} }, { provide: String, useValue: {} },
     {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
