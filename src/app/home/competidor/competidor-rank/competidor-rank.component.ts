@@ -14,7 +14,7 @@ export class CompetidorRankComponent implements OnInit {
 
   displayedColumns: string[] = ['posicao','name', 'grade', 'finalScore', 'award'];
   ranking: MatTableDataSource<any[]>;
-  categoria: string = `Iniciação 1`;
+  categoria: String = "Iniciação 1";
 
   mock = [
 
@@ -46,13 +46,15 @@ export class CompetidorRankComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.ranking = new MatTableDataSource<any>(this.mock);
-    //this.getCompetidores();
+    //this.ranking = new MatTableDataSource<any>(this.mock);
+    this.getCompetidores();
   }
 
   getCompetidores() {
+    
       this.competidorService.getRanking(this.categoria).subscribe(res=>{
-        this.ranking = new MatTableDataSource<any>(res['content']);
+        this.ranking = res['content'];
+        console.log(res);
       }, err=>{
         console.log(err);
       })   
