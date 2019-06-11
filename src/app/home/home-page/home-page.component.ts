@@ -57,7 +57,7 @@ export class HomePageComponent implements OnInit {
   }
 
   mudaCategoria(categoria: string){
-    this.competidorRank.categoria = categoria;
+    //this.competidorRank.categoria = categoria;
   }
 
 }

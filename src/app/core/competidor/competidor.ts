@@ -10,5 +10,4 @@ export class Competidor {
     scoreLevelTwo: '';
     level: '';
     finalScore: '';
-    award:'';
 }

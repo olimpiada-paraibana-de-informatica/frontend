@@ -51,10 +51,9 @@ export class CompetidorRankComponent implements OnInit {
   }
 
   getCompetidores() {
-    
       this.competidorService.getRanking(this.categoria).subscribe(res=>{
-        this.ranking = res['content'];
-        console.log(res);
+        this.ranking = new MatTableDataSource<any>(res['content']);
+        console.log(res); // verificando resposta
       }, err=>{
         console.log(err);
       })   

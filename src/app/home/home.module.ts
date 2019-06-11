@@ -31,7 +31,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     FlexLayoutModule
     
   ],
-  providers: [AuthGuardService, { provide: HomePageComponent, useValue: {} }, { provide: CompetidorRankComponent, useValue: {} }, { provide: String, useValue: {} },
+  providers: [AuthGuardService,
     {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
