@@ -17,7 +17,6 @@ import { AlunoFormComponent } from './aluno/aluno-form/aluno-form.component';
 import { CompetidorComponent } from './competidor/competidor.component';
 import { CompetidorRankComponent } from './competidor/competidor-rank/competidor-rank.component';
 
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 @NgModule({
@@ -26,10 +25,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    HttpClientModule,
     SharedModule,
-    FlexLayoutModule
-    
+    FlexLayoutModule,
   ],
   providers: [AuthGuardService,
     {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
