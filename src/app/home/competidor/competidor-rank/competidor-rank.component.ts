@@ -41,25 +41,28 @@ export class CompetidorRankComponent implements OnInit {
 
   constructor(
     private competidorService: CompetidorService,
+    private tokenService : TokenService
   ) {
     
    }
 
   ngOnInit() {
     //this.ranking = new MatTableDataSource<any>(this.mock);
+    this.ranking = new MatTableDataSource<any>();
     this.getCompetidores();
   }
 
   getCompetidores() {
+    if(this.tokenService.hasPrivilege('I_SC')){
       this.competidorService.getRanking(this.categoria).subscribe(res=>{
         this.ranking = new MatTableDataSource<any>(res['content']);
-        console.log(res); // verificando resposta
       }, err=>{
         console.log(err);
-      })   
+      })
+    }
   }
 
-  award(competidor: Competidor, typeAward: string){
+  award(competidor, typeAward: string){
     this.competidorService.postAward(competidor.id, typeAward);
   }
 
