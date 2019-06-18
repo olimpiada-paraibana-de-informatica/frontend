@@ -21,6 +21,11 @@ export class CompetidorService {
     return this.http.get<any[]>(`${environment.apiBaseUrl}/api/competitors?size=100`);
   }
 
+  porcentagemClassificadosSegundaFase(porcentagem){
+    return this.http.post<any[]>(`${environment.apiBaseUrl}/api/competitors/levels?percentage=${porcentagem}`,{});
+
+  }
+
   getCompetidoresByDelegado(){
     return this.http.get<any[]>(`${environment.apiBaseUrl}/api/delegates/competitors?size=100`);
   }
@@ -44,6 +49,10 @@ export class CompetidorService {
 
   getRanking(categoria){
     return this.http.get<any[]>(`${environment.apiBaseUrl}/api/competitors/ranking?category=${categoria}`);
+  }
+
+  downloadCertificado(id,award){
+    return this.http.get(`${environment.apiBaseUrl}/api/office/competitors/${id}/awards/download?award=${award}`,  {responseType: 'blob'});
   }
 
 

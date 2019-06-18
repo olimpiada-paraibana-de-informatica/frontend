@@ -17,6 +17,7 @@ export class CompetidorComponent implements OnInit {
   uploadForm : FormGroup;
   lista: any;
   segundaFase = false;
+  porcentagemForm: FormGroup;
   fase = "Competidores - 1º Fase";
   mock = [
 
@@ -60,6 +61,9 @@ export class CompetidorComponent implements OnInit {
     this.uploadForm = this.formBuilder.group({
       profile:['']
     });
+    this.porcentagemForm = new FormGroup({
+      porcentagem: new FormControl('',[Validators.required])
+    })
 
   }
 
@@ -142,11 +146,17 @@ export class CompetidorComponent implements OnInit {
     this.competidorService.downloadPlanilhaEx().subscribe(data => saveAs(data, `Planilha Exemplo Competidor.xlsx`));
   }
 
-  openSnackBar(message: string, config) {
+  openSnackBar(message: string, config=[]) {
     this.snackBar.open(message, 'fechar', {
       duration: 9000,
       panelClass: config
     });
+  }
+
+  submitForm(formDirective: FormGroupDirective) {
+    this.competidorService.porcentagemClassificadosSegundaFase(this.porcentagemForm.value.porcentagem).subscribe(res=>{
+      this.openSnackBar(this.porcentagemForm.value.porcentagem+"% classificados");
+    })
   }
 
 

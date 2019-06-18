@@ -2,6 +2,14 @@
 <mat-card>
     <div class="example-table-container" >
         <table mat-table class="example-table" [dataSource]="ranking">
+            <ng-container  matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef >Ações</th>
+            <td mat-cell *matCellDef="let row; let i = index"  >
+              <mat-select matPrefix placeholder="Opções" >
+                <mat-option (click)="dowloadCertificado(row)" [value]="opt - 2"> Baixar certificado</mat-option>
+              </mat-select>
+            </td>
+          </ng-container>
           <ng-container matColumnDef="posicao">
               <th mat-header-cell *matHeaderCellDef>Posição</th>
               <td mat-cell *matCellDef="let row">{{row.posicao}}</td>
@@ -24,7 +32,7 @@
             <ng-container matColumnDef="award">
                 <th mat-header-cell *matHeaderCellDef>Award</th>
                 <td mat-cell *matCellDef="let row">
-                  <mat-select matPrefix placeholder="Opções">
+                  <mat-select matPrefix [placeholder]="row.award || 'opções'">
                     <mat-option (click)="award(row, 'Ouro')" [value]="opt-2"> Ouro </mat-option>
                     <mat-option (click)="award(row, 'Prata')" [value]="opt-3"> Prata </mat-option>
                     <mat-option (click)="award(row, 'Bronze')" [value]="opt-4"> Bronze </mat-option>

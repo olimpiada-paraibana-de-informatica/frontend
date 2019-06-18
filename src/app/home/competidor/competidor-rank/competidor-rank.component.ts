@@ -12,7 +12,7 @@ import { TokenService } from 'src/app/core/token/token.service';
 })
 export class CompetidorRankComponent implements OnInit {
 
-  displayedColumns: string[] = ['posicao','name', 'grade', 'finalScore', 'award'];
+  displayedColumns: string[] = ['actions','posicao','name', 'grade', 'finalScore', 'award'];
   ranking: MatTableDataSource<any[]>;
   categoria: String = "Iniciação 1";
 
@@ -61,6 +61,10 @@ export class CompetidorRankComponent implements OnInit {
 
   award(competidor: Competidor, typeAward: string){
     this.competidorService.postAward(competidor.id, typeAward);
+  }
+
+  dowloadCertificado(competidor){
+    this.competidorService.downloadCertificado(competidor.id, competidor.award).subscribe(data=> saveAs(data, `Certificado ${competidor.nome}- .xlsx`))
   }
 
 }
