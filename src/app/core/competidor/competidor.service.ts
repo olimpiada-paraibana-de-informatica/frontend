@@ -48,7 +48,7 @@ export class CompetidorService {
   }
 
   getRanking(categoria){
-    return this.http.get<any[]>(`${environment.apiBaseUrl}/api/competitors/ranking?category="Iniciação 1`);
+    return this.http.get<any[]>(`${environment.apiBaseUrl}/api/competitors/ranking?category=Iniciação 1`);
   }
 
   downloadCertificado(id,award){
