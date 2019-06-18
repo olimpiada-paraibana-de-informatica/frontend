@@ -35,7 +35,6 @@ export class CompetidorService {
   }
 
   getSegundaFase(){
-    console.log("TODO Service");
     return this.http.get<any[]>(`${environment.apiBaseUrl}/api/delegates/competitors`);
   }
 
@@ -44,7 +43,7 @@ export class CompetidorService {
   }
 
   postAward(id, typeAward: string){
-    return this.http.get<any[]>(`${environment.apiBaseUrl}/api/competitors/${id}/rewarding?award=${typeAward}`);
+    return this.http.post<any[]>(`${environment.apiBaseUrl}/api/competitors/${id}/rewarding?award=${typeAward}`,{});
   }
 
   getRanking(categoria){

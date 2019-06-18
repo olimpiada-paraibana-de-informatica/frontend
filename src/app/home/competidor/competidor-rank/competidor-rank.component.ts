@@ -63,11 +63,16 @@ export class CompetidorRankComponent implements OnInit {
   }
 
   award(competidor, typeAward: string){
-    this.competidorService.postAward(competidor.id, typeAward);
+    this.competidorService.postAward(competidor.id, typeAward).subscribe(res=>{
+      console.log(res);
+      this.getCompetidores();
+    },err=>{
+      console.log(err);
+    });
   }
 
   dowloadCertificado(competidor){
-    this.competidorService.downloadCertificado(competidor.id, competidor.award).subscribe(data=> saveAs(data, `Certificado ${competidor.nome}- .xlsx`))
+    this.competidorService.downloadCertificado(competidor.id, competidor.award).subscribe(data=> saveAs(data, `Certificado ${competidor.name}- .xlsx`))
   }
 
 }
