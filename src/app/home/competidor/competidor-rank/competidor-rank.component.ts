@@ -59,7 +59,7 @@ export class CompetidorRankComponent implements OnInit {
   }
 
   dowloadCertificado(competidor){
-    this.competidorService.downloadCertificado(competidor.id, competidor.award).subscribe(data=> saveAs(data, `Certificado ${competidor.name}- .xlsx`))
+    this.competidorService.downloadCertificado(competidor.id, competidor.award).subscribe(data=> saveAs(data, `Certificado ${competidor.name}- .docx`))
   }
 
 }
