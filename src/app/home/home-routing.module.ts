@@ -39,8 +39,23 @@ const routes: Routes = [{
       {path: 'novo', component: AlunoFormComponent, canActivate: [PermissionGuardService], data: { permission: 'IA_ST'},},
     ],
     },
-    {path: 'competidor', component: CompetidorComponent, canActivate: [PermissionGuardService], data: { permission: 'IA_ST'}},
-    {path: 'competidor/ranking', component: CompetidorRankComponent, canActivate: [PermissionGuardService], data: { permission: 'I_CO'}},
+    {path: 'competidor', children:[
+      {path:'iniciacao1', component: CompetidorComponent, canActivate: [PermissionGuardService], data: { permission: 'IA_ST', value:'Iniciação 1'}},
+      {path:'iniciacao2', component: CompetidorComponent, canActivate: [PermissionGuardService], data: { permission: 'IA_ST', value:'Iniciação 2'}},
+      {path:'programacao', component: CompetidorComponent, canActivate: [PermissionGuardService], data: { permission: 'IA_ST', value:'Programação'}},
+      {path:'avancadojunior', component: CompetidorComponent, canActivate: [PermissionGuardService], data: { permission: 'IA_ST', value:'Avançado Junior'}},
+      {path:'avancadosenior', component: CompetidorComponent, canActivate: [PermissionGuardService], data: { permission: 'IA_ST', value:'Avançado Senior'}},
+      {path: 'ranking', 
+      children:[
+        { path:'iniciacao1',component: CompetidorRankComponent, canActivate: [PermissionGuardService], data: { permission: 'I_CO', value:'Iniciação 1'}},
+        { path:'iniciacao2',component: CompetidorRankComponent, canActivate: [PermissionGuardService], data: { permission: 'I_CO', value:'Iniciação 2'}},
+        { path:'programacao',component: CompetidorRankComponent, canActivate: [PermissionGuardService], data: { permission: 'I_CO', value:'Programação'}},
+        { path:'avancadojunior',component: CompetidorRankComponent, canActivate: [PermissionGuardService], data: { permission: 'I_CO', value:'Avançado Junior'}},
+        { path:'avancadosenior',component: CompetidorRankComponent, canActivate: [PermissionGuardService], data: { permission: 'I_CO', value:'Avançado Senior'}}
+      ]},
+    ],
+    },
+    
     ]
 }];
 

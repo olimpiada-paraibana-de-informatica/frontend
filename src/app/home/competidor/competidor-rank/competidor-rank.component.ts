@@ -4,6 +4,7 @@ import { Competidor } from 'src/app/core/competidor/competidor';
 import { CompetidorService } from 'src/app/core/competidor/competidor.service';
 
 import { TokenService } from 'src/app/core/token/token.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-competidor-rank',
@@ -14,47 +15,33 @@ export class CompetidorRankComponent implements OnInit {
 
   displayedColumns: string[] = ['actions','posicao','name', 'grade', 'finalScore', 'award'];
   ranking: MatTableDataSource<any[]>;
-  categoria: String = "Iniciação 1";
-
-  mock = [
-
-    {
-      posicao: "1",
-      name: "Daenarys Targeryen",
-      grade: "1º ano do Ensino Fundamental",
-      finalScore: "90"
-    },
-    {
-      posicao: "2",
-      name: "Sansa Stark",
-      grade: "2º ano do Ensino Fundamental",
-      finalScore: "70"
-    },
-    {
-      posicao: "3",
-      name: "Khal Drogo",
-      grade: "1º ano do Ensino Fundamental",
-      finalScore: "43"
-    }
-
-  ]
+  categoria: String = "";
+  tipoDaEscola = '';
 
   constructor(
     private competidorService: CompetidorService,
-    private tokenService : TokenService
+    private tokenService : TokenService,
+    private route: ActivatedRoute
   ) {
     
    }
 
   ngOnInit() {
-    //this.ranking = new MatTableDataSource<any>(this.mock);
+    this.route.data.subscribe((data) => {
+      this.categoria = data.value;  
+    });
     this.ranking = new MatTableDataSource<any>();
+    this.getCompetidores();
+  }
+
+  tipoEscola(teste){
+    this.tipoDaEscola = teste.value;
     this.getCompetidores();
   }
 
   getCompetidores() {
     if(this.tokenService.hasPrivilege('I_SC')){
-      this.competidorService.getRanking(this.categoria).subscribe(res=>{
+      this.competidorService.getRanking(this.categoria, this.tipoDaEscola).subscribe(res=>{
         this.ranking = new MatTableDataSource<any>(res['content']);
       }, err=>{
         console.log(err);

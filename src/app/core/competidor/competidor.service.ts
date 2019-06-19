@@ -17,8 +17,8 @@ export class CompetidorService {
     return this.http.post<any[]>(`${environment.apiBaseUrl}/api/delegates/excel/schools/${id}/level_two`, file);
   }
 
-  getCompetidores(){
-    return this.http.get<any[]>(`${environment.apiBaseUrl}/api/competitors?size=100`);
+  getCompetidores(categoria, tipo){
+    return this.http.get<any[]>(`${environment.apiBaseUrl}/api/competitors?category=${categoria} ${tipo}`);
   }
 
   porcentagemClassificadosSegundaFase(porcentagem){
@@ -46,8 +46,8 @@ export class CompetidorService {
     return this.http.post<any[]>(`${environment.apiBaseUrl}/api/competitors/${id}/rewarding?award=${typeAward}`,{});
   }
 
-  getRanking(categoria){
-    return this.http.get<any[]>(`${environment.apiBaseUrl}/api/competitors/ranking?category=Iniciação 1`);
+  getRanking(categoria, tipo){
+    return this.http.get<any[]>(`${environment.apiBaseUrl}/api/competitors/ranking?category=${categoria} ${tipo}`);
   }
 
   downloadCertificado(id,award){

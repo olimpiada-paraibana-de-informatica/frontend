@@ -9,6 +9,13 @@
       </div>
 </div> 
     <mat-card>
+        <div  *ngIf="categoria === 'Iniciação 1' || categoria === 'Iniciação 2'">
+            <label>Escola: </label>
+            <mat-radio-group (change)="tipoEscola($event)">
+              <mat-radio-button value="Escolas Públicas">Pública</mat-radio-button>
+              <mat-radio-button [checked]="tipoDaEscola === ''" value=" ">Privada</mat-radio-button>
+            </mat-radio-group>
+          </div>
         <form [formGroup]="porcentagemForm" (ngSubmit)="submitForm(formDirective)"
         #formDirective="ngForm">
     

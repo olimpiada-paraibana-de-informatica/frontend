@@ -1,6 +1,13 @@
 <app-header title="Ranking de Competidores" ></app-header>
 <mat-card>
     <div class="example-table-container" >
+      <div *ngIf="categoria === 'Iniciação 1' || categoria === 'Iniciação 2'">
+      <label>Escola: </label>
+      <mat-radio-group (change)="tipoEscola($event)">
+        <mat-radio-button value="Escolas Públicas">Pública</mat-radio-button>
+        <mat-radio-button [checked]="tipoDaEscola === ''" value=" ">Privada</mat-radio-button>
+      </mat-radio-group>
+    </div>
         <table mat-table class="example-table" [dataSource]="ranking">
             <ng-container  matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef >Ações</th>

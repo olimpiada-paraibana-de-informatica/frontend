@@ -4,6 +4,7 @@ import { MatTableDataSource, MatSnackBar, Sort } from '@angular/material';
 import {FormGroup, FormControl , Validators, FormGroupDirective, FormBuilder } from '@angular/forms';
 import { saveAs } from 'file-saver';
 import { TokenService } from 'src/app/core/token/token.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-competidor',
@@ -19,28 +20,8 @@ export class CompetidorComponent implements OnInit {
   segundaFase = false;
   porcentagemForm: FormGroup;
   fase = "Competidores - 1º Fase";
-  mock = [
-
-    {
-      category: "INICIACAO",
-      dateBirth: "1996-11-29",
-      genre: "Masculino",
-      grade: '4º ano',
-      name: 'Marcos Roberto',
-      score: '6.0'
-    },
-
-    {
-      category: "INICIACAO",
-      dateBirth: "1996-03-01",
-      genre: "Feminino",
-      grade: '4º ano',
-      name: 'Paula Fernandes',
-      score: '8.0'
-    }
-
-  ]
-
+  categoria: String = "";
+  tipoDaEscola = "";
   sortedData: any[];
 
   nomeArquivo: String = "Enviar Planilha";
@@ -49,12 +30,16 @@ export class CompetidorComponent implements OnInit {
     private competidorService: CompetidorService,
     private snackBar: MatSnackBar,
     private formBuilder: FormBuilder,
-    private tokenService : TokenService
+    private tokenService : TokenService,
+    private route: ActivatedRoute
   ) { 
     
   }
 
   ngOnInit() {
+    this.route.data.subscribe((data)=>{
+      this.categoria = data.value;
+    })
     this.competidoresList = new MatTableDataSource<any>();
     this.getCompetidores();
    
@@ -67,9 +52,14 @@ export class CompetidorComponent implements OnInit {
 
   }
 
+  tipoEscola(teste){
+    this.tipoDaEscola = teste.value;
+    this.getCompetidores();
+  }
+
   getCompetidores() {
     if(this.tokenService.hasPrivilege('I_SC')){
-      this.competidorService.getCompetidores().subscribe(res=>{
+      this.competidorService.getCompetidores(this.categoria, this.tipoDaEscola).subscribe(res=>{
         this.competidoresList = new MatTableDataSource<any>(res['content']);
         this.sortedData = this.competidoresList.data.slice();
       }, err=>{
