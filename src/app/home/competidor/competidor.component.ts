@@ -30,7 +30,7 @@ export class CompetidorComponent implements OnInit {
     private competidorService: CompetidorService,
     private snackBar: MatSnackBar,
     private formBuilder: FormBuilder,
-    private tokenService : TokenService,
+    public tokenService : TokenService,
     private route: ActivatedRoute
   ) { 
     

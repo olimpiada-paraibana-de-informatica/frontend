@@ -37,7 +37,7 @@
             </ng-container>
 
             <ng-container matColumnDef="award">
-                <th mat-header-cell *matHeaderCellDef>Award</th>
+                <th mat-header-cell *matHeaderCellDef>Prêmio</th>
                 <td mat-cell *matCellDef="let row">
                   <mat-select matPrefix [placeholder]="row.award || 'opções'">
                     <mat-option (click)="award(row, 'Ouro')" [value]="opt-2"> Ouro </mat-option>
