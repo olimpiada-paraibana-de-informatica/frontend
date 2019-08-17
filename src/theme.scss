@@ -38,3 +38,25 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe', GradientType=0 );
 
 }
+
+.home-background {
+
+background: rgba(242,246,248,1);
+background: -moz-linear-gradient(top, rgba(242,246,248,1) 0%, rgba(181,198,208,1) 77%, rgba(216,225,231,1) 95%, rgba(224,239,249,1) 100%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(242,246,248,1)), color-stop(77%, rgba(181,198,208,1)), color-stop(95%, rgba(216,225,231,1)), color-stop(100%, rgba(224,239,249,1)));
+background: -webkit-linear-gradient(top, rgba(242,246,248,1) 0%, rgba(181,198,208,1) 77%, rgba(216,225,231,1) 95%, rgba(224,239,249,1) 100%);
+background: -o-linear-gradient(top, rgba(242,246,248,1) 0%, rgba(181,198,208,1) 77%, rgba(216,225,231,1) 95%, rgba(224,239,249,1) 100%);
+background: -ms-linear-gradient(top, rgba(242,246,248,1) 0%, rgba(181,198,208,1) 77%, rgba(216,225,231,1) 95%, rgba(224,239,249,1) 100%);
+background: linear-gradient(to bottom, rgba(242,246,248,1) 0%, rgba(181,198,208,1) 77%, rgba(216,225,231,1) 95%, rgba(224,239,249,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f6f8', endColorstr='#e0eff9', GradientType=0 );
+}
+
+.ativo {
+  color: green;
+  font-weight: bold;
+}
+
+.inativo {
+  color: crimson;
+  font-weight: bold; 
+}

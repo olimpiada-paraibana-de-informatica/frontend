@@ -1,3 +1,47 @@
 <div>
-  <img class="logo-dashboard" src="../../../assets/opi-logo.png" alt="">
+  <img class="logo-dashboard logo" src="../../../assets/opi-logo.png" alt="">
 </div>
+<div >
+  <h1 class="parceiros">PARCEIROS</h1>
+  <hr>
+  <div fxLayout="row" fxLayoutGap="15px">
+    <a class="logo-dashboard" href="http://www.computacao.ufcg.edu.br" target="_blank"> 
+        <img  class="logo-dashboard parce" src="../../../assets/ufcg-logo.png" alt="">
+    </a>
+    <a class="logo-dashboard" href="https://www.tfgco.com/" target="_blank">
+        <img  class="logo-dashboard parce" src="../../../assets/tfg.png" alt="">
+    </a>
+  </div>
+
+</div>
+<div>
+    <h1 class="parceiros">OBJETIVO</h1>
+    <hr>
+    <p class="espacamento">
+      {{objetivo}}
+    </p>
+</div>
+
+<div>
+    <h1 class="parceiros">CATEGORIAS</h1>
+    <hr>
+    <div class="logo-dashboard" fxLayout="row" fxLayoutGap="15px">
+        <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style" class="color" fxFlex="100">
+            <mat-button-toggle fxFlex="20" (click)="setCategoria(1)" class="color" value="bold">Iniciação 1</mat-button-toggle>
+            <mat-button-toggle fxFlex="20" (click)="setCategoria(2)" class="color" value="italic">Iniciação 2</mat-button-toggle>
+            <mat-button-toggle fxFlex="20" (click)="setCategoria(3)" class="color" value="underline">Programação</mat-button-toggle>
+            <mat-button-toggle fxFlex="20" (click)="setCategoria(4)" class="color" value="underline">Avançado Júnior</mat-button-toggle>
+            <mat-button-toggle fxFlex="20" (click)="setCategoria(5)" class="color" value="underline">Avançado Senior</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+    <p class="espacamento">
+      {{categoria}}
+    </p>
+
+</div>
+
+<div>
+    <h1 class="parceiros">DATAS</h1>
+    <hr>
+</div>
+

@@ -1,0 +1,127 @@
+<mat-card>
+  <div class="table-responsive">
+    <form [formGroup]="delegadoForm" (ngSubmit)="submitForm()">
+
+        <div fxLayout="row" fxLayoutGap="15px">
+            <mat-form-field class="table-responsive-row" fxFlex="50">
+              <input matInput placeholder="Nome da escola *" formControlName="schoolName">
+              <mat-error *ngIf="delegadoForm.controls.schoolName.errors?.required">
+                O Nome do Colégio é obrigatório
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="table-responsive-row" fxFlex="50">
+                <input matInput placeholder="Nome do Delegado *" formControlName="delegateName">
+                <mat-error *ngIf="delegadoForm.controls.delegateName.errors?.required">
+                  O nome do delegado é obrigatório
+                </mat-error>
+              </mat-form-field>
+
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="15px">
+          <mat-form-field class="table-responsive-row" fxFlex="50">
+            <mat-select placeholder="Estado da escola *" formControlName="schoolStateCbo">
+                <mat-option [value]="state.cboCode" (click)="getCities(state.cboCode)" *ngFor="let state of states">{{state.name}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="delegadoForm.controls.schoolStateCbo.errors?.required">
+                O Estado do Colégio é obrigatório
+            </mat-error>
+          </mat-form-field>
+            <mat-form-field class="table-responsive-row" fxFlex="50">
+              <mat-select placeholder="Cidade da escola *" formControlName="schoolCityCbo">
+                  <mat-option [value]="city.cboCode" *ngFor="let city of cities">{{city.name}}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="delegadoForm.controls.schoolCityCbo.errors?.required">
+                  A Cidade do Colégio é obrigatória
+              </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="table-responsive-row" fxFlex="50">
+            <mat-select placeholder="Tipo" formControlName="schoolType">
+                <mat-option [value]="type.name" *ngFor="let type of types">{{type.name}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="delegadoForm.controls.schoolType.errors?.required">
+                O tipo da escola é obrigatório
+            </mat-error>
+        </mat-form-field>
+
+          </div>
+
+      <div fxLayout="row" fxLayoutGap="15px">
+        <mat-form-field class="table-responsive-row" fxFlex="50">
+          <input matInput placeholder="Email *" formControlName="delegateEmail">
+          <mat-error *ngIf="delegadoForm.controls.delegateEmail.errors?.required">
+            O email é obrigatório
+          </mat-error>
+          <mat-error *ngIf="delegadoForm.controls.delegateEmail.errors?.email">
+            Email inválido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="table-responsive-row" fxFlex="50">
+          <input matInput placeholder="Confirmar Email *" formControlName="emailConfirm">
+          <mat-error *ngIf="delegadoForm.controls.emailConfirm.errors?.required">
+            O email é obrigatório
+          </mat-error>
+          <mat-error *ngIf="delegadoForm.controls.emailConfirm.errors?.email">
+            Email inválido
+          </mat-error>
+          <mat-error *ngIf="delegadoForm.controls.emailConfirm.errors?.MatchEmail && delegadoForm.controls.emailConfirm.value != '' && !delegadoForm.controls.delegateEmail.errors?.email">
+            Os emails estão diferentes
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="15px">
+        <mat-form-field class="table-responsive-row" fxFlex="50">
+          <input matInput [type]="hide ? 'password' : 'text'" placeholder="Senha *" formControlName="password">
+          <mat-icon matSuffix (click)="hide = !hide" class="outline">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+          <mat-error *ngIf="delegadoForm.controls.password.errors?.required">
+            A senha é obrigatória
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="table-responsive-row" fxFlex="50">
+          <input matInput [type]="hideConfirm ? 'password' : 'text'" placeholder="Confirmar senha *" formControlName="passwordConfirm">
+          <mat-icon matSuffix (click)="hideConfirm = !hideConfirm" class="outline">{{hideConfirm ? 'visibility' :
+            'visibility_off'}}</mat-icon>
+          <mat-error *ngIf="delegadoForm.controls.passwordConfirm.errors?.required">
+            A senha é obrigatória
+          </mat-error>
+          <mat-error *ngIf="delegadoForm.controls.passwordConfirm.errors?.MatchPassword && delegadoForm.controls.passwordConfirm.value != ''">
+            As senhas estão diferentes
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="15px">
+        <table mat-table [dataSource]="categories" >
+          <ng-container matColumnDef="select" >
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox (change)="$event.checked ? selectAll() : deselectAll()" [checked]="selectedPrivileges.hasValue() && isAllSelected()">
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let category">
+              <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selectedPrivileges.toggle(category.key) : null"
+                [checked]="selectedPrivileges.isSelected(category.key)">
+              </mat-checkbox>
+            </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Nome da Categoria </th>
+            <td mat-cell *matCellDef="let category"> {{category.name}} </td>
+          </ng-container>
+    
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let category; columns: displayedColumns;" (click)="selectedPrivileges.toggle(category.key)"></tr>
+        </table>
+        
+      </div>
+      
+      <div class="button-row bt-submit">
+        <button mat-raised-button class="mat-raised-button mat-primary btn float-right" type="submit" [disabled]="!delegadoForm.valid">{{textSubmit}}</button>
+      </div>
+    </form>
+  </div>
+</mat-card>

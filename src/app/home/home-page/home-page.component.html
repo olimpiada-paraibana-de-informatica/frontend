@@ -1,18 +1,55 @@
-<mat-sidenav-container class="example-sidenav-container background2 " >
+<mat-sidenav-container class="sidenav-container background2 " >
   <mat-sidenav
-    [disableClose]="true"
+    
     #drawer
     class="sidenav"
-    fixedInViewport="true"
+    fixedInViewport="false"
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="!(isHandset$ | async)">
+    >
     <mat-toolbar color="primary" class="mat-elevation-z2">Menu</mat-toolbar>
-    <mat-nav-list >
-      <a mat-list-item [routerLink]="'/home/dashboard'">
-        <mat-icon mat-list-icon >dashboard</mat-icon>
+    <mat-nav-list class="" >
+      <a mat-list-item [routerLink]="'/dashboard'">
+        <mat-icon mat-list-icon class="material-icons" >dashboard</mat-icon>
         <h4 mat-line>Dashboard</h4>
       </a>
+      <a mat-list-item [matMenuTriggerFor]="menu"  fxLayoutGap="15px" *ngIf="verifySchool()">
+        <mat-icon mat-list-icon class="material-icons" >supervised_user_circle
+        </mat-icon>
+        <h4 mat-line>Escolas</h4>
+        <mat-menu #menu="matMenu" class="teste" xPosition="before" [overlapTrigger]="true"> 
+            <a [routerLink]="'/escolas/novo'"><button mat-menu-item *ngIf="!tokenService.isAuthenticated() || tokenService.hasPrivilege('C_SC')">Cadastrar</button></a>
+            <a [routerLink]="'/escolas'"><button mat-menu-item *ngIf="tokenService.hasPrivilege('I_SC')">Listar</button></a>
+        </mat-menu>
+      </a>
+      <a mat-list-item [routerLink]="'/aluno/novo'" *ngIf="tokenService.hasPrivilege('IA_ST')">
+        <mat-icon mat-list-icon class="material-icons" >person_add</mat-icon>
+        <h4 mat-line>Estudantes</h4>
+      </a>
+      <a mat-list-item [matMenuTriggerFor]="competidor" *ngIf="tokenService.hasPrivilege('IA_ST')">
+        <mat-icon mat-list-icon class="material-icons" >list</mat-icon>
+        <h4 mat-line>Competidores</h4>
+        <mat-menu #competidor="matMenu" class="teste" xPosition="before" [overlapTrigger]="true"> 
+          <a [routerLink]="'/competidor/iniciacao1'"><button mat-menu-item *ngIf="!tokenService.isAuthenticated() || tokenService.hasPrivilege('C_SC') || tokenService.hasPrivilege('IA_CO')">Iniciação 1</button></a>
+          <a [routerLink]="'/competidor/iniciacao2'"><button mat-menu-item *ngIf="tokenService.hasPrivilege('IA_CO') || tokenService.hasPrivilege('C_CO')">Iniciação 2</button></a>
+          <a [routerLink]="'/competidor/programacao'"><button mat-menu-item *ngIf="tokenService.hasPrivilege('IA_CO') || tokenService.hasPrivilege('C_CO')">Programação</button></a>
+          <a [routerLink]="'/competidor/avancadojunior'"><button mat-menu-item *ngIf="tokenService.hasPrivilege('IA_CO') || tokenService.hasPrivilege('C_CO')">Avançado Junior</button></a>
+          <a [routerLink]="'/competidor/avancadosenior'"><button mat-menu-item *ngIf="tokenService.hasPrivilege('IA_CO') || tokenService.hasPrivilege('C_CO')">Avançado Senior</button></a>
+      </mat-menu>
+      </a>
+      <a mat-list-item [matMenuTriggerFor]="competidor_rank" *ngIf="tokenService.hasPrivilege('IA_ST')">
+        <mat-icon mat-list-icon class="material-icons" >flag</mat-icon>
+        <h4 mat-line>Ranking</h4>
+        <mat-menu #competidor_rank="matMenu" class="teste" xPosition="before" [overlapTrigger]="true"> 
+          <a [routerLink]="'/competidor/ranking/iniciacao1'"><button mat-menu-item *ngIf="!tokenService.isAuthenticated() || tokenService.hasPrivilege('C_SC') || tokenService.hasPrivilege('IA_CO')" >Iniciação 1</button></a>
+          <a [routerLink]="'/competidor/ranking/iniciacao2'"><button mat-menu-item *ngIf="tokenService.hasPrivilege('IA_CO') || tokenService.hasPrivilege('C_CO')"  >Iniciação 2</button></a>
+          <a [routerLink]="'/competidor/ranking/programacao'"><button mat-menu-item *ngIf="tokenService.hasPrivilege('IA_CO') || tokenService.hasPrivilege('C_CO')" >Programação</button></a>
+          <a [routerLink]="'/competidor/ranking/avancadojunior'"><button mat-menu-item *ngIf="tokenService.hasPrivilege('IA_CO') || tokenService.hasPrivilege('C_CO')" >Avançado Junior</button></a>
+          <a [routerLink]="'/competidor/ranking/avancadosenior'"><button mat-menu-item *ngIf="tokenService.hasPrivilege('IA_CO') || tokenService.hasPrivilege('C_CO')" >Avançado Senior</button></a>
+      </mat-menu>
+      </a>
+
+
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -28,8 +65,11 @@
       <span>Olimpíada Paraibana de Informática</span>
       <span class="example-spacer"></span>
       <small class="font-12">{{first}}</small>
-      <button mat-icon-button (click)="logout()">
+      <button mat-icon-button (click)="logout()" *ngIf="tokenService.isAuthenticated()">
         <mat-icon aria-label="Sair">exit_to_app</mat-icon>
+      </button>
+      <button mat-icon-button (click)="login()"  *ngIf="!tokenService.isAuthenticated()">
+          Login
       </button>
     </mat-toolbar>
 

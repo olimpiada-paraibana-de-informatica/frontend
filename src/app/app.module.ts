@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginModule } from './login/login.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './home/interceptors/auth-interceptor';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { AuthInterceptor } from './home/interceptors/auth-interceptor';
   ],
   imports: [
     BrowserModule,
+    FlexLayoutModule,
     AppRoutingModule,
     HttpClientModule,
     HomeModule,

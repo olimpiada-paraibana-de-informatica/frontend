@@ -5,9 +5,9 @@ import { SharedModule } from '../shared/shared.module';
 import { TokenGuardService } from './token-guard.service';
 
 const routes: Routes = [{
-  path: '',
+  path: 'login',
   component: LoginPageComponent,
-  canActivate: [ TokenGuardService]
+  canActivate: [TokenGuardService]
 }];
 
 @NgModule({
