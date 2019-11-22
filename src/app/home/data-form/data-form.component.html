@@ -1,0 +1,61 @@
+<form [formGroup]="dataForm" (ngSubmit)="onSubmit()" class="example-form">
+    <h3>Ensino Fundamental e Médio</h3>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Inscrições" formControlName="subscribeDate">
+  </mat-form-field>
+  
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Iniciação 1 e 2 para Escolas Públicas" formControlName="iniciacao1And2PubLevelOneDate">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Fase 1: Iniciação 1 e 2" formControlName="iniciacao1And2LevelOneDate">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Fase 1: Programação" formControlName="programacaoLevelOneDate">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Fase 2: Iniciação 1 e 2" formControlName="iniciacao1And2LevelTwoDate">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Fase 2: Programação" formControlName="programacaoLevelTwoDate">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Resultados" formControlName="resultsDate">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Premiação" formControlName="awardDate">
+  </mat-form-field>
+
+
+  <h3>Ensino Superior</h3>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Inscrições" formControlName="highSubscribeDate">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Prova" formControlName="highOlimpiadDate">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Resultados" formControlName="highResultsDate">
+  </mat-form-field>
+ 
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Premiação" formControlName="highAwardDate">
+  </mat-form-field>
+
+  <div style="widows: 100%; text-align: right; margin-bottom: 27px;">
+
+    <button mat-raised-button color="accent" type="submit"  class="button1">Salvar</button>
+  </div>
+
+  
+</form>
