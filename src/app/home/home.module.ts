@@ -16,12 +16,15 @@ import { HeaderComponent } from '../shared/components/header/header.component';
 import { AlunoFormComponent } from './aluno/aluno-form/aluno-form.component';
 import { CompetidorComponent } from './competidor/competidor.component';
 import { CompetidorRankComponent } from './competidor/competidor-rank/competidor-rank.component';
+import { ResultadoComponent } from './dashboard/resultado/resultado.component';
+import { GraficoComponent } from './dashboard/grafico/grafico.component';
+import { DataFormComponent } from './data-form/data-form.component';
 
 
 
 @NgModule({
   declarations: [HomePageComponent, 
-    DashboardComponent, DelegadoFormComponent, DelegadoListComponent, CriarDelegadoComponent, EditarDelegadoComponent, AlunoFormComponent, CompetidorComponent, CompetidorRankComponent],
+    DashboardComponent, DelegadoFormComponent, DelegadoListComponent, CriarDelegadoComponent, EditarDelegadoComponent, AlunoFormComponent, CompetidorComponent, CompetidorRankComponent, ResultadoComponent, GraficoComponent, DataFormComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

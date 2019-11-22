@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'https://opiinternback.herokuapp.com'
+  apiBaseUrl: 'http://ec2-54-174-67-238.compute-1.amazonaws.com:8080'
 };
 
 /*

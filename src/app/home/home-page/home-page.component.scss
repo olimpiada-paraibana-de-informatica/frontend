@@ -26,3 +26,19 @@
     font-size: 12px;
 }
   
+.div-router{
+    padding: 60px 150px 0 150px
+}
+@media screen and (max-width: 1000px) {
+
+    .div-router{
+        padding: 100px 0px 0px 0px
+    }
+}
+
+@media screen and (max-width: 700px) {
+
+    .div-router{
+        padding: 0px 0px 0px 0px
+    }
+}

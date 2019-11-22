@@ -12,6 +12,9 @@ import { AlunoResolverService } from './resolvers/aluno-resolver.service';
 import { AlunoFormComponent } from './aluno/aluno-form/aluno-form.component';
 import { CompetidorComponent } from './competidor/competidor.component';
 import { CompetidorRankComponent } from './competidor/competidor-rank/competidor-rank.component';
+import { ResultadoComponent } from './dashboard/resultado/resultado.component';
+import { GraficoComponent } from './dashboard/grafico/grafico.component';
+import { DataFormComponent } from './data-form/data-form.component';
 
 const routes: Routes = [{
   path: '',
@@ -20,6 +23,8 @@ const routes: Routes = [{
   children: [
     { path: '', component: DashboardComponent },
     { path: 'dashboard', component: DashboardComponent },
+    { path: 'resultado', component: ResultadoComponent},
+    { path: 'maisResultado', component: GraficoComponent},
     {
       path: 'escolas',
       children: [
@@ -34,6 +39,7 @@ const routes: Routes = [{
         }
       ]
     },
+    {path: 'atualizarData', component: DataFormComponent, canActivate: [PermissionGuardService], data: { permission: 'IA_ST'}},
     {path: 'aluno',
     children: [
       {path: 'novo', component: AlunoFormComponent, canActivate: [PermissionGuardService], data: { permission: 'IA_ST'},},

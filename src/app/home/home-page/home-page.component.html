@@ -48,12 +48,16 @@
           <a [routerLink]="'/competidor/ranking/avancadosenior'"><button mat-menu-item *ngIf="tokenService.hasPrivilege('IA_CO') || tokenService.hasPrivilege('C_CO')" >Avançado Senior</button></a>
       </mat-menu>
       </a>
+      <a mat-list-item [routerLink]="'/atualizarData'" *ngIf="tokenService.hasPrivilege('IA_ST')">
+        <mat-icon mat-list-icon class="material-icons" >calendar_today</mat-icon>
+        <h4 mat-line>Atualizar Datas</h4>
+      </a>
 
 
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary" class="mat-elevation-z2">
+    <mat-toolbar style="z-index: 99999;" color="primary" class="mat-elevation-z2">
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -73,8 +77,13 @@
       </button>
     </mat-toolbar>
 
-    <div style="padding: 60px 150px 0 150px">
+    <div class="div-router">
       <router-outlet></router-outlet>
     </div>
+
+
+    <mat-toolbar color="primary" class="mat-elevation-z2">
+       
+    </mat-toolbar>
   </mat-sidenav-content>
 </mat-sidenav-container>

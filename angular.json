@@ -28,9 +28,13 @@
             ],
             "styles": [
               "src/custom-theme.scss",
-              "src/theme.scss"
+              "src/theme.scss",
             ],
-            "scripts": []
+            "scripts": [
+              "src/vega/vega.js",
+              "src/vega/vega-lite.js",
+              "src/vega/vega-embed.js", 
+            ]
           },
           "configurations": {
             "production": {
