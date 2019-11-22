@@ -1,0 +1,98 @@
+<div>
+  <div class="divHeaderResult">
+    <img class="logo-dashboard logo" src="../../../../assets/opi-logo.png" alt="">
+    <h1 class="parceiros">{{getTipo()}} <br/> {{ano}}</h1>
+    <img  class="logo-dashboard parce" src="../../../../assets/ufcg-logo.png" alt="">
+
+  </div>
+ 
+  <div class="container-table">
+      <div>
+          <img class="logo-dashboard logo" src="../../../../assets/ouro.jpg" alt="">
+      </div>
+    <table mat-table [dataSource]="resultado.gold" class="mat-elevation-z8 tableResultado gold">
+
+      <ng-container matColumnDef="nome">
+        <!-- <th mat-header-cell *matHeaderCellDef> Iniciação 1 </th> -->
+        <td mat-cell *matCellDef="let element"> <p *ngFor="let name of element.name"> {{name}} </p> </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="escolaCidade">
+        <!-- <th mat-header-cell *matHeaderCellDef> Iniciação 1 Pub. </th> -->
+        <td mat-cell *matCellDef="let element"> {{element.school}},  {{element.cityName}} </td>
+      </ng-container>
+    
+      
+      <!-- <tr mat-header-row *matHeaderRowDef="displayedColumnsResultado"></tr> -->
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsResultado;"></tr>
+    </table>
+  </div>
+
+    <div class="container-table">
+      <div>
+          <img class="logo-dashboard logo" src="../../../../assets/prata.jpg" alt="">
+      </div>
+      <table mat-table [dataSource]="resultado.silver" class="mat-elevation-z8 tableResultado silver">
+        
+        <ng-container matColumnDef="nome">
+        <!-- <th mat-header-cell *matHeaderCellDef> Iniciação 1 </th> -->
+        <td mat-cell *matCellDef="let element"> <p *ngFor="let name of element.name"> {{name}} </p>  </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="escolaCidade">
+        <!-- <th mat-header-cell *matHeaderCellDef> Iniciação 1 Pub. </th> -->
+        <td mat-cell *matCellDef="let element"> {{element.school}},  {{element.cityName}} </td>
+      </ng-container>
+      
+      
+      <!-- <tr mat-header-row *matHeaderRowDef="displayedColumnsResultado"></tr> -->
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsResultado;"></tr>
+    </table>
+  </div>
+
+  <div class="container-table">
+      <div>
+          <img class="logo-dashboard logo" src="../../../../assets/bronze.jpg" alt="">
+      </div>
+      
+    <table mat-table [dataSource]="resultado.bronze" class="mat-elevation-z8 tableResultado bronze">
+
+      <ng-container matColumnDef="nome">
+        <!-- <th mat-header-cell *matHeaderCellDef> Iniciação 1 </th> -->
+        <td mat-cell *matCellDef="let element"> <p *ngFor="let name of element.name"> {{name}} </p>  </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="escolaCidade">
+        <!-- <th mat-header-cell *matHeaderCellDef> Iniciação 1 Pub. </th> -->
+        <td mat-cell *matCellDef="let element"> {{element.school}},  {{element.cityName}} </td>
+      </ng-container>
+    
+      
+      <!-- <tr mat-header-row *matHeaderRowDef="displayedColumnsResultado"></tr> -->
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsResultado;"></tr>
+    </table>
+  </div>
+  
+  <div class="container-table">
+      <div>
+          <img class="logo-dashboard logo" src="../../../../assets/honraAoMerito.jpg" alt="">
+      </div>
+  
+    <table mat-table [dataSource]="resultado.honorableMention" class="mat-elevation-z8 tableResultado honorableMention">
+
+      <ng-container matColumnDef="nome">
+        <!-- <th mat-header-cell *matHeaderCellDef> Iniciação 1 </th> -->
+        <td mat-cell *matCellDef="let element"> <p *ngFor="let name of element.name"> {{name}} </p>  </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="escolaCidade">
+        <!-- <th mat-header-cell *matHeaderCellDef> Iniciação 1 Pub. </th> -->
+        <td mat-cell *matCellDef="let element"> {{element.school}},  {{element.cityName}} </td>
+      </ng-container>
+    
+      
+      <!-- <tr mat-header-row *matHeaderRowDef="displayedColumnsResultado"></tr> -->
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsResultado;"></tr>
+    </table>
+  </div>
+</div>
