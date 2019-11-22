@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { element } from 'protractor';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ResultadoService } from 'src/app/core/resultado/resultado.service';
+import { AnoResultado } from 'src/app/core/resultado/anoResultado';
+import { Router } from '@angular/router';
+import { DataService } from 'src/app/core/data/data.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,6 +11,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  
+  
+  constructor(private dataService: DataService, private resultadoService: ResultadoService, private router: Router,  private changeDetectorRefs: ChangeDetectorRef) { }
+  
+  datas : any = {};
   categoria = "";
   objetivo = "A Olimpíada Paraibana de Informática visa despertar nos alunos o interesse em computação imprescindível"+
    "na formação básica dos estudantes atualmente, através de uma atividade que envolve desafios motivadores e competição saudável. "+
@@ -13,11 +23,17 @@ export class DashboardComponent implements OnInit {
    " Já para os alunos do ensino superior, a OPI visa estimular os alunos a aprimorarem e aprofundarem o conhecimento em Programação e Algoritmos."+
    " Além disso, a olimpíada almeja preparar melhor e despertar o interesse de alunos paraibanos para as competições nacionais e internacionais de programação, como a Olimpíada Brasileira e Internacional de Informática, e a ACM/ICPC."+
    " Estes alunos possivelmente se motivarão a entrar no curso de Ciência da Computação, e o conhecimento adquirido na preparação será muito valioso para a sua formação. A organização da OPI está a cargo do curso de Ciência da Computação da Universidade Federal de Campina Grande.";
-
-  constructor() { }
+  anosResultados  = [];
+  displayedColumnsTableResultado: string[] = ['iniciacao1', 'iniciacao1Pub', 'iniciacao2', 'iniciacao2Pub', 'programacao', 'avancadoJunior', 'avancadoSenior'];
+  descricaoResultado = "Confira os resultados dos alunos nas edições da OPI a seguir. Além disso, veja os principais resultados dos alunos paraibanos nas principais competições nacionais e internacionais de programação";
 
   ngOnInit() {
     this.setCategoria(1);
+    this.setAnosResultados();
+
+    this.dataService.getDatas().subscribe(res=>{
+      this.datas = res;
+    })
   }
 
   setCategoria(categoria){
@@ -43,6 +59,88 @@ export class DashboardComponent implements OnInit {
          break; 
       } 
    } 
+  }
+
+  setAnosResultados(){
+    this.resultadoService.getAnoResultados().subscribe(res=>{
+          let listaIniciacao1 = [];
+          let listaIniciacao1Pub = [];
+          let listaIniciacao2 = [];
+          let listaIniciacao2Pub = [];
+          let listaProgramacao = [];
+          let listaAvancadoJunior = [];
+          let listaAvancadoSenior = [];
+
+
+          let qtdMaxAnos = 0;
+          res.forEach(element => {
+            if(element.year.length > qtdMaxAnos){
+              qtdMaxAnos = element.year.length;
+            }
+
+            switch(element.type) { 
+              case 'iniciacao1': {
+                listaIniciacao1 = element.year; 
+                break; 
+              }case 'iniciacao1Pub': { 
+                listaIniciacao1Pub = element.year; 
+                break; 
+              }case 'iniciacao2': {
+                listaIniciacao2 = element.year; 
+                break;
+              }case 'iniciacao2Pub': {
+                listaIniciacao2Pub = element.year; 
+                break;
+              }case 'programacao': {
+                listaProgramacao = element.year; 
+                break;
+              }case 'avancadoJunior': {
+                listaAvancadoJunior = element.year; 
+                break;
+              }case 'avancadoSenior': {
+                listaAvancadoSenior = element.year; 
+                break;
+              }
+              default: { 
+                break; 
+              } 
+            }
+      });
+
+      let listaAux = [];
+
+      for (let i = 0; i < qtdMaxAnos; i++) {
+        let obj = {
+          iniciacao1 : listaIniciacao1[i] ? listaIniciacao1[i] : "",
+          iniciacao1Pub : listaIniciacao1Pub[i] ? listaIniciacao1Pub[i] : "",
+          iniciacao2 : listaIniciacao2[i] ? listaIniciacao2[i] : "",
+          iniciacao2Pub : listaIniciacao2Pub[i] ? listaIniciacao2Pub[i] : "",
+          programacao : listaProgramacao[i] ? listaProgramacao[i] : "",
+          avancadoJunior : listaAvancadoJunior[i] ? listaAvancadoJunior[i] : "",
+          avancadoSenior : listaAvancadoSenior[i] ? listaAvancadoSenior[i] : "",
+        };
+        listaAux.push(obj);
+      }
+      this.anosResultados = this.anosResultados.concat(listaAux);
+
+      this.changeDetectorRefs.detectChanges();
+
+    });
+
+
+
+  }
+
+  openResult(anoSelecionado , tipo){
+    if(String(anoSelecionado).trim() === "") return;
+    
+    this.router.navigate(['/resultado'] , { queryParams: { ano: anoSelecionado, tipo : tipo } });
+    
+  }
+  
+  openMaisResultado(){
+    this.router.navigate(['/maisResultado'] );
+
   }
 
 }

@@ -40,8 +40,197 @@
 
 </div>
 
-<div>
+<div class="div-datas">
     <h1 class="parceiros">DATAS</h1>
     <hr>
+  <div style=" align-items: baseline; display: flex; flex-direction: row; flex-wrap: wrap;">
+
+    <div class="divEnsinoFundamentalMedio">
+        <mat-card class="example-card">
+          <mat-card-header>
+            <mat-card-title>Ensino Fundamental e Médio</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p class="title">Inscrições</p>
+            <p>
+              A escola deverá preencher o seguinte formulário até o dia {{datas.subscribeDate}} confirmando o interesse em aplicar a prova. 
+            </p>
+            <p> 
+              Os alunos poderão se inscrever até o dia da 1a fase nas escolas cadastradas. 
+            </p>
+            <p class="title"> 
+              Iniciação 1 e 2 para Escolas Públicas
+            </p>
+            <p>
+              {{datas.iniciacao1And2PubLevelOneDate}}
+            </p>
+            <p class="title">
+              Fase 1: Iniciação 1 e 2 
+            </p>
+            <p>
+              {{datas.iniciacao1And2LevelOneDate}} 
+            </p>
+            <p class="title">
+              Fase 1: Programação 
+            </p>
+            <p>
+              {{datas.programacaoLevelOneDate}}
+            </p>
+            <p class="title">
+              Fase 2: Iniciação 1 e 2 
+            </p>
+            <p>
+              {{datas.iniciacao1And2LevelTwoDate}} 
+            </p>
+            <p class="title">
+              Fase 2: Programação 
+            </p>
+            <p>
+              {{datas.programacaoLevelTwoDate}}
+            </p>
+            <p class="title">
+              Resultados 
+            </p>
+            <p>
+              {{datas.resultsDate}} 
+            </p>
+            <p class="title">
+              Observação 
+            </p>
+            <p>
+              Comparecer 30 minutos antes da prova para encontrar a sala onde a prova será aplicada. Levem um documento de identificação. Será permitido apenas o uso de lápis, caneta e borracha. 
+            </p>
+            <p class="title">
+              Premiação 
+            </p>
+            <p>
+              {{datas.awardDate}}
+            </p>
+          </mat-card-content>
+        </mat-card>
+    </div>
+    
+    <div class="divEnsinoSuperior">
+
+        <mat-card class="example-card">
+          <mat-card-header>
+            <mat-card-title>Ensino Superior</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p class="title">
+              Inscrições
+            </p>
+            <p>
+              {{datas.highSubscribeDate}}
+            </p>
+            <p class="title">
+              Prova
+            </p>
+            <p>
+              {{datas.highOlimpiadDate}}
+            </p>
+            <p class="title">
+              Resultados
+            </p>
+            <p>
+              {{datas.highResultsDate}}
+            </p>
+            <p class="title">
+              Local e Horário das Provas
+            </p>
+            <p>
+              A prova será realizada em algumas cidades da Paraíba de acordo com a disponibilidade dos organizadores locais. Em cada universidade, teremos um delegado responsável pela organização. Divulgaremos estes locais alguns dias antes da realização da prova. O número de vagas poderá ser limitado em cada local dependendo da disponibilidade da infraestrutura.
+            </p>
+            <p class="title">
+              Premiação
+            </p>
+            <p>
+              {{datas.highAwardDate}}
+            </p>
+          </mat-card-content>
+        </mat-card>
+    </div>
+  </div>
 </div>
 
+
+<div>
+    <h1 class="parceiros">RESULTADOS</h1>
+    <hr>
+    <div class="espacamento" style="text-align: center;">
+
+      {{descricaoResultado}} 
+      <p (click)="openMaisResultado()" style="color: blue; display: inline; cursor: pointer;"> AQUI. </p>
+    </div>
+
+    <table mat-table [dataSource]="anosResultados" class="mat-elevation-z8 tableAnoResultado">
+
+      <ng-container matColumnDef="iniciacao1">
+        <th mat-header-cell *matHeaderCellDef> Iniciação 1 </th>
+        <td mat-cell *matCellDef="let element" (click)="openResult(element.iniciacao1, 'iniciacao1')"> {{element.iniciacao1}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="iniciacao1Pub">
+        <th mat-header-cell *matHeaderCellDef> Iniciação 1 Pub. </th>
+        <td mat-cell *matCellDef="let element" (click)="openResult(element.iniciacao1Pub, 'iniciacao1Pub')"> {{element.iniciacao1Pub}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="iniciacao2">
+        <th mat-header-cell *matHeaderCellDef> Iniciação 2 </th>
+        <td mat-cell *matCellDef="let element" (click)="openResult(element.iniciacao2, 'iniciacao2')"> {{element.iniciacao2}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="iniciacao2Pub">
+        <th mat-header-cell *matHeaderCellDef> Iniciação 2 Pub. </th>
+        <td mat-cell *matCellDef="let element" (click)="openResult(element.iniciacao2Pub, 'iniciacao2Pub')"> {{element.iniciacao2Pub}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="programacao">
+        <th mat-header-cell *matHeaderCellDef> Programação </th>
+        <td mat-cell *matCellDef="let element" (click)="openResult(element.programacao, 'programacao')"> {{element.programacao}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="avancadoJunior">
+        <th mat-header-cell *matHeaderCellDef> Avançado Júnior </th>
+        <td mat-cell *matCellDef="let element" (click)="openResult(element.avancadoJunior, 'avancadoJunior')"> {{element.avancadoJunior}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="avancadoSenior">
+        <th mat-header-cell *matHeaderCellDef> Avançado Senior  </th>
+        <td mat-cell *matCellDef="let element" (click)="openResult(element.avancadoSenior, 'avancadoSenior')"> {{element.avancadoSenior}} </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsTableResultado"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsTableResultado;"></tr>
+    </table>
+</div>
+
+<div class="div-contato">
+    <h1 class="parceiros">CONTATO</h1>
+    <hr>
+    
+    <div style=" display: flex;  flex-direction: row; flex-wrap: wrap;">
+
+      <div class="div-map">
+          <div class="gmap">
+              <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=DSC - UFCG,+Campina+Grande&amp;aq=0&amp;oq=joomshaper&amp;sll=-7.2135589,-35.9066347&amp;sspn=42.766543,80.332031&amp;ie=UTF8&amp;hq=JoomShaper,&amp;hnear=UFCG,+ DSC&amp;ll=-7.2135589,-35.9066347&amp;spn=-7.2135589,-35.9066347&amp;t=m&amp;z=14&amp;iwloc=A&amp;&amp;output=embed"></iframe>
+          </div>
+      </div>
+
+      <div class="div-endereco">
+        <p><img class="icon" src="../../../assets/envelope.svg">
+        <a href="mailto:opi@dsc.ufcg.edu.br">opi@dsc.ufcg.edu.br</a></p>
+        <p> <img class="icon" src="../../../assets/phone.svg">
+        +55 (83) 2101-1122 (Prof. <a href="http://www.dsc.ufcg.edu.br/~rohit/Rohit_Gheyi/Home.html" target="_blank">Rohit Gheyi</a>).</p>
+
+        <address class="center">
+          <br>
+          <p>
+          Rua: Aprígio Veloso, 882, Bloco CN, Universitário<br>
+          Campina Grande, PB, Brasil <br>
+          CEP: 58429-900 <br>
+          </p>
+        </address>
+      </div>
+    </div>
+</div>

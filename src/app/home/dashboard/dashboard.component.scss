@@ -44,4 +44,97 @@ hr {
     color: black;
 }
 
-  
+.tableAnoResultado{
+    width: 100%;
+    text-align: center;
+    background: transparent;
+    margin-bottom: 50px;
+}
+ 
+.tableAnoResultado th{
+    text-align: center;
+    font-weight: 700;
+}
+
+.tableAnoResultado td{
+    cursor: pointer;
+}
+
+.tableAnoResultado td:hover{
+    color: blue;
+}
+
+.div-datas hr{
+    margin-bottom: 30px;
+
+}
+.div-datas .title{
+    font-weight: 800;
+}
+
+.divEnsinoFundamentalMedio{
+    width: 49%;
+    display: inline-block;
+    text-align: justify;
+}
+.div-datas .mat-card{
+    border-radius: 7px;
+    padding: 0;
+    padding-bottom: 10px;
+    border: 1px solid #F2DEDE;
+}
+.div-datas .mat-card-header{
+    background-color: #f2dede;
+    padding: 10px;
+}
+.div-datas .mat-card-content{
+    padding: 20px;
+}
+
+.divEnsinoSuperior{
+    width: 49%;
+    display: inline-block;
+    margin-left: 2%;
+    text-align: justify;
+}
+
+.gmap{
+    border: 10px solid #f6f5f0;
+    border-radius: 50%;
+    height: 300px;
+    width: 300px;
+    box-shadow: 0px 0px 3px 3px #e7e4dc;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+}
+
+.gmap iframe {
+    height: 280px;
+    width: 300px;
+}
+
+.div-contato{
+    margin-bottom: 20px;
+}
+.div-contato hr{
+    margin-bottom: 30px;
+}
+
+.div-map{
+    width: 50%;
+    display: inline-block;
+}
+
+.div-endereco{
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+}
+
+.icon{
+    width: 14px;
+    position: absolute;
+    margin-left: -20px;
+    margin-top: 5px;
+}
