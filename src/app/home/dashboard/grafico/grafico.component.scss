@@ -1,0 +1,21 @@
+.container-table{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.container-table div{
+    display: inline-block;
+    width: 19%;
+    text-align: center;
+}
+
+th{
+    font-size: 17px;
+    text-align: center !important;
+}
+td{
+    font-size: 14px;
+}

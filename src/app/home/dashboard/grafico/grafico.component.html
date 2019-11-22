@@ -1,0 +1,57 @@
+
+<div id="vis"></div>
+
+
+<div >
+  <div>
+
+    <mat-form-field>
+      <mat-label>Categoria</mat-label>
+      <mat-select (selectionChange)="changeSpec()" [(value)]="categoria">
+        <mat-option value="Iniciação 1">Iniciação 1</mat-option>
+        <mat-option value="Iniciação 2">Iniciação 2</mat-option>
+        <mat-option value="Programação Júnior">Programação Júnior</mat-option>
+        <mat-option value="Programação 1">Programação 1</mat-option>
+        <mat-option value="Programação 2">Programação 2</mat-option>
+        <mat-option value="Programação Sênior">Programação Sênior</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div id="vis2"></div>
+
+</div>
+
+<div>
+
+  <h3> Prêmios Internacionais </h3>
+
+    <table mat-table [dataSource]="listaInternacional" class="mat-elevation-z8 tableAnoResultado">
+
+    
+  
+    <ng-container matColumnDef="year">
+      <th mat-header-cell *matHeaderCellDef> Ano </th>
+      <td mat-cell style="text-align: center; width: 80px;" *matCellDef="let element" > {{element.year}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="nomes">
+      <th mat-header-cell *matHeaderCellDef> Nomes </th>
+      <td mat-cell style="text-align: left;" *matCellDef="let element"> {{element.nomes}} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="school">
+      <th mat-header-cell *matHeaderCellDef> Instituições </th>
+      <td mat-cell style="text-align: center;" *matCellDef="let element"> {{element.school}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="details">
+      <th mat-header-cell *matHeaderCellDef> Detalhes </th>
+      <td mat-cell style="text-align: left;" *matCellDef="let element"> {{element.details}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsTableResultado"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsTableResultado;"></tr>
+  </table>
+
+</div>
